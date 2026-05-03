@@ -16,6 +16,8 @@ const dictionary: Dictionary = {
   },
   header: {
     ariaHome: "MUA Match home",
+    openMenu: "Menu openen",
+    closeMenu: "Menu sluiten",
   },
   localeSwitcher: {
     label: "Taal",

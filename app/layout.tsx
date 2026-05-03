@@ -1,4 +1,4 @@
-import type { Metadata } from "next";
+import type { Metadata, Viewport } from "next";
 import type { ReactNode } from "react";
 import { Suspense } from "react";
 import { Roboto } from "next/font/google";
@@ -17,6 +17,12 @@ export const metadata: Metadata = {
   metadataBase: new URL("https://muamatch.com"),
   icons: { icon: "https://www.muamatch.com/favicon.ico" },
   title: { default: "MUA Match", template: "%s | MUA Match" },
+};
+
+export const viewport: Viewport = {
+  width: "device-width",
+  initialScale: 1,
+  viewportFit: "cover",
 };
 
 export default function RootLayout({ children }: { children: ReactNode }) {

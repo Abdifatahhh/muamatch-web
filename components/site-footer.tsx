@@ -11,7 +11,7 @@ export function SiteFooter({
 }) {
   return (
     <footer className="border-t border-border py-8">
-      <div className="mx-auto flex max-w-6xl flex-wrap items-center justify-between gap-4 px-4 text-sm text-muted-foreground sm:px-6">
+      <div className="mx-auto flex max-w-6xl flex-col gap-6 px-4 text-sm text-muted-foreground sm:flex-row sm:flex-wrap sm:items-center sm:justify-between sm:gap-4 sm:px-6">
         <span>© {new Date().getFullYear()} MUA Match</span>
         <nav
           className="flex flex-wrap gap-x-4 gap-y-2"

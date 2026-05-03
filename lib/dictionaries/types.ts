@@ -8,7 +8,7 @@ export interface Dictionary {
     contact: string;
     howItWorks: string;
   };
-  header: { ariaHome: string };
+  header: { ariaHome: string; openMenu: string; closeMenu: string };
   localeSwitcher: { label: string; en: string; nl: string };
   hero: {
     eyebrow: string;

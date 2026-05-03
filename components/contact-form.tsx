@@ -25,7 +25,7 @@ export function ContactForm({ labels }: { labels: Dictionary["contactForm"] }) {
           name="name"
           autoComplete="name"
           placeholder={labels.placeholderName}
-          className="rounded-lg border border-input bg-background px-3 py-2.5 text-foreground outline-none ring-ring transition-shadow focus-visible:ring-2"
+          className="rounded-lg border border-input bg-background px-3 py-2.5 text-base text-foreground outline-none ring-ring transition-shadow focus-visible:ring-2"
         />
       </label>
       <label className="grid gap-2 text-sm font-medium text-muted-foreground">
@@ -34,12 +34,12 @@ export function ContactForm({ labels }: { labels: Dictionary["contactForm"] }) {
           name="body"
           rows={5}
           placeholder={labels.placeholderBody}
-          className="resize-y rounded-lg border border-input bg-background px-3 py-2.5 text-foreground outline-none ring-ring transition-shadow focus-visible:ring-2"
+          className="resize-y rounded-lg border border-input bg-background px-3 py-2.5 text-base text-foreground outline-none ring-ring transition-shadow focus-visible:ring-2"
         />
       </label>
       <button
         type="submit"
-        className="justify-self-start rounded-md bg-primary px-5 py-2.5 text-sm font-semibold text-primary-foreground hover:opacity-90"
+        className="min-h-[44px] justify-self-start touch-manipulation rounded-md bg-primary px-6 py-3 text-sm font-semibold text-primary-foreground hover:opacity-90"
       >
         {labels.submit}
       </button>

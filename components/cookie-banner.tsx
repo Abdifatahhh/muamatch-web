@@ -30,7 +30,7 @@ export function CookieBanner({
     <div
       role="dialog"
       aria-label={cookie.bannerAria}
-      className="fixed bottom-4 left-4 right-4 z-[100] mx-auto flex max-w-lg flex-wrap items-center gap-3 rounded-lg border border-border bg-card p-4 text-sm text-muted-foreground shadow-soft sm:flex-nowrap sm:gap-4"
+      className="fixed bottom-[max(1rem,env(safe-area-inset-bottom))] left-[max(1rem,env(safe-area-inset-left))] right-[max(1rem,env(safe-area-inset-right))] z-[100] mx-auto flex max-w-lg flex-wrap items-center gap-3 rounded-lg border border-border bg-card p-4 text-sm text-muted-foreground shadow-soft sm:flex-nowrap sm:gap-4"
     >
       <p className="min-w-0 flex-1">
         {cookie.text}{" "}
@@ -51,7 +51,7 @@ export function CookieBanner({
           }
           setVisible(false);
         }}
-        className="shrink-0 rounded-md bg-primary px-4 py-2 text-sm font-semibold text-primary-foreground hover:opacity-90"
+        className="min-h-[44px] shrink-0 rounded-md bg-primary px-5 py-2.5 text-sm font-semibold text-primary-foreground hover:opacity-90 touch-manipulation"
       >
         {cookie.accept}
       </button>

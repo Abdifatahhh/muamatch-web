@@ -52,13 +52,13 @@ export default async function HomePage({ params }: { params: Promise<{ locale: s
               <h1 className="mt-3 text-balance text-3xl font-bold tracking-tight text-foreground sm:text-4xl lg:text-[2.65rem] lg:leading-[1.12]">
                 {dict.hero.title}
               </h1>
-              <p className="mt-4 max-w-xl text-lg text-muted-foreground">{dict.hero.lead}</p>
+              <p className="mt-4 max-w-xl text-base leading-relaxed text-muted-foreground sm:text-lg">{dict.hero.lead}</p>
               <div id="app" className="mt-8 flex flex-wrap gap-3">
                 <Link
                   href={APP_STORE}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="inline-flex rounded-lg border border-border bg-card p-2 shadow-sm transition-shadow hover:shadow-md"
+                  className="inline-flex touch-manipulation rounded-lg border border-border bg-card p-2 shadow-sm transition-shadow active:opacity-90 hover:shadow-md"
                 >
                   <Image
                     src={asset("apple-store-download-app-icon.svg")}
@@ -72,7 +72,7 @@ export default async function HomePage({ params }: { params: Promise<{ locale: s
                   href={PLAY_STORE}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="inline-flex rounded-lg border border-border bg-card p-2 shadow-sm transition-shadow hover:shadow-md"
+                  className="inline-flex touch-manipulation rounded-lg border border-border bg-card p-2 shadow-sm transition-shadow active:opacity-90 hover:shadow-md"
                 >
                   <Image
                     src={asset("google-play-store-download-app-icon.svg")}

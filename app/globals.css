@@ -46,6 +46,9 @@
 }
 
 @layer base {
+  html {
+    overflow-x: clip;
+  }
   * {
     @apply border-border;
   }

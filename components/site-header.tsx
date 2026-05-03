@@ -3,6 +3,7 @@ import Link from "next/link";
 import type { Locale } from "@/lib/i18n";
 import type { Dictionary } from "@/lib/dictionaries/types";
 import { LocaleSwitcher } from "@/components/locale-switcher";
+import { MobileNav } from "@/components/mobile-nav";
 import { ThemeToggle } from "@/components/theme-toggle";
 
 export function SiteHeader({
@@ -10,7 +11,10 @@ export function SiteHeader({
   dict,
 }: {
   locale: Locale;
-  dict: Pick<Dictionary, "nav" | "header" | "localeSwitcher" | "navAria">;
+  dict: Pick<
+    Dictionary,
+    "nav" | "header" | "localeSwitcher" | "navAria"
+  >;
 }) {
   const base = `/${locale}`;
   const nav = [
@@ -22,17 +26,17 @@ export function SiteHeader({
   ];
 
   return (
-    <header className="sticky top-0 z-50 border-b border-border bg-background/80 backdrop-blur-md">
-      <div className="relative mx-auto flex max-w-6xl items-center gap-3 px-4 py-3 sm:gap-4 sm:px-6">
+    <header className="sticky top-0 z-50 border-b border-border bg-background/80 backdrop-blur-md supports-[backdrop-filter]:bg-background/70">
+      <div className="relative mx-auto flex max-w-6xl items-center gap-2 px-4 py-3 sm:gap-3 sm:px-6">
         <div className="pointer-events-none absolute inset-x-0 top-full h-px bg-gradient-to-r from-transparent via-primary/35 to-transparent" aria-hidden />
 
-        <Link href={base} className="flex shrink-0 items-center" aria-label={dict.header.ariaHome}>
+        <Link href={base} className="flex shrink-0 items-center touch-manipulation" aria-label={dict.header.ariaHome}>
           <Image
             src="https://www.muamatch.com/assets/LogoPink.svg"
             alt="MUA Match"
             width={112}
             height={74}
-            className="h-10 w-auto sm:h-11"
+            className="h-9 w-auto sm:h-11"
             priority
           />
         </Link>
@@ -42,14 +46,20 @@ export function SiteHeader({
             <Link
               key={item.href}
               href={item.href}
-              className="text-sm font-medium text-muted-foreground transition-colors hover:text-foreground"
+              className="touch-manipulation text-sm font-medium text-muted-foreground transition-colors hover:text-foreground"
             >
               {item.label}
             </Link>
           ))}
         </nav>
 
-        <div className="ml-auto flex items-center gap-1.5 sm:gap-2">
+        <div className="ml-auto flex items-center gap-1 sm:gap-2">
+          <MobileNav
+            items={nav}
+            ariaLabel={dict.navAria}
+            openLabel={dict.header.openMenu}
+            closeLabel={dict.header.closeMenu}
+          />
           <LocaleSwitcher locale={locale} ariaLabel={dict.localeSwitcher.label} />
           <ThemeToggle />
         </div>
