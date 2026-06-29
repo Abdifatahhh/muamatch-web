@@ -1,6 +1,6 @@
 // Central place for external links and shared site constants.
 
-export const APP_STORE = "https://apps.apple.com/app/mua-match/id6566187518";
+export const APP_STORE = "https://apps.apple.com/nl/app/mua-match/id6566187518";
 export const PLAY_STORE =
   "https://play.google.com/store/apps/details?id=com.muamatch.muamatch";
 
