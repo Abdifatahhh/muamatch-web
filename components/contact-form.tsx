@@ -1,6 +1,7 @@
 "use client";
 
 import type { Dictionary } from "@/lib/dictionaries/types";
+import { CONTACT_EMAIL } from "@/lib/site";
 import * as React from "react";
 
 export function ContactForm({ labels }: { labels: Dictionary["contactForm"] }) {
@@ -8,12 +9,14 @@ export function ContactForm({ labels }: { labels: Dictionary["contactForm"] }) {
     e.preventDefault();
     const fd = new FormData(e.currentTarget);
     const name = String(fd.get("name") ?? "").trim();
+    const email = String(fd.get("email") ?? "").trim();
     const body = String(fd.get("body") ?? "").trim();
     const subject = name ? `${labels.mailSubjectPrefix}${name}` : labels.mailSubjectFallback;
     const lines: string[] = [];
     if (name) lines.push(`${labels.mailBodyNamePrefix}${name}`);
+    if (email) lines.push(`${labels.mailBodyEmailPrefix}${email}`);
     if (body) lines.push("", body);
-    const href = `mailto:info@muamatch.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(lines.join("\n"))}`;
+    const href = `mailto:${CONTACT_EMAIL}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(lines.join("\n"))}`;
     window.location.href = href;
   }
 
@@ -25,6 +28,17 @@ export function ContactForm({ labels }: { labels: Dictionary["contactForm"] }) {
           name="name"
           autoComplete="name"
           placeholder={labels.placeholderName}
+          className="rounded-lg border border-input bg-background px-3 py-2.5 text-base text-foreground outline-none ring-ring transition-shadow focus-visible:ring-2"
+        />
+      </label>
+      <label className="grid gap-2 text-sm font-medium text-muted-foreground">
+        {labels.email}
+        <input
+          name="email"
+          type="email"
+          autoComplete="email"
+          inputMode="email"
+          placeholder={labels.placeholderEmail}
           className="rounded-lg border border-input bg-background px-3 py-2.5 text-base text-foreground outline-none ring-ring transition-shadow focus-visible:ring-2"
         />
       </label>

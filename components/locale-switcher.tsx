@@ -19,27 +19,29 @@ export function LocaleSwitcher({
     <div
       role="group"
       aria-label={ariaLabel}
-      className="flex shrink-0 touch-manipulation rounded-md border border-border bg-muted/50 p-0.5 dark:bg-muted/30"
+      className="flex shrink-0 items-center text-xs font-medium text-muted-foreground"
     >
-      {locales.map((l) => {
+      {locales.map((l, i) => {
         const active = l === locale;
         const href = `/${l}${suffix}`;
-        const label = l.toUpperCase();
         return (
-          <Link
-            key={l}
-            href={href}
-            hrefLang={l}
-            lang={l}
-            prefetch={false}
-            className={`flex min-h-[44px] min-w-[2.75rem] items-center justify-center rounded px-3 py-2 text-center text-xs font-semibold transition-colors ${
-              active
-                ? "bg-card text-foreground shadow-sm dark:bg-card"
-                : "text-muted-foreground hover:text-foreground"
-            }`}
-          >
-            {label}
-          </Link>
+          <span key={l} className="flex items-center">
+            {i > 0 ? <span aria-hidden className="px-0.5 text-border">/</span> : null}
+            <Link
+              href={href}
+              hrefLang={l}
+              lang={l}
+              prefetch={false}
+              aria-current={active ? "true" : undefined}
+              className={`touch-manipulation rounded px-1.5 py-1 transition-colors ${
+                active
+                  ? "font-semibold text-foreground"
+                  : "hover:text-foreground"
+              }`}
+            >
+              {l.toUpperCase()}
+            </Link>
+          </span>
         );
       })}
     </div>

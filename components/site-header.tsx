@@ -5,43 +5,45 @@ import type { Dictionary } from "@/lib/dictionaries/types";
 import { LocaleSwitcher } from "@/components/locale-switcher";
 import { MobileNav } from "@/components/mobile-nav";
 import { ThemeToggle } from "@/components/theme-toggle";
+import { asset, DASHBOARD_URL } from "@/lib/site";
 
 export function SiteHeader({
   locale,
   dict,
 }: {
   locale: Locale;
-  dict: Pick<
-    Dictionary,
-    "nav" | "header" | "localeSwitcher" | "navAria"
-  >;
+  dict: Pick<Dictionary, "nav" | "header" | "localeSwitcher" | "navAria">;
 }) {
   const base = `/${locale}`;
   const nav = [
-    { href: `${base}#app`, label: dict.nav.download },
-    { href: `${base}#voordelen`, label: dict.nav.benefits },
-    { href: `${base}#hoe-het-werkt`, label: dict.nav.howItWorks },
-    { href: `${base}#artiesten`, label: dict.nav.artists },
+    { href: `${base}#how-it-works`, label: dict.nav.howItWorks },
+    { href: `${base}#for-clients`, label: dict.nav.forClients },
+    { href: `${base}#for-muas`, label: dict.nav.forMuas },
     { href: `${base}#contact`, label: dict.nav.contact },
+  ];
+
+  const actions = [
+    { href: DASHBOARD_URL, label: dict.nav.login, variant: "outline" as const, external: true },
+    { href: `${base}#download`, label: dict.nav.download, variant: "primary" as const },
   ];
 
   return (
     <header className="sticky top-0 z-50 border-b border-border bg-background/80 backdrop-blur-md supports-[backdrop-filter]:bg-background/70">
-      <div className="relative mx-auto flex max-w-6xl items-center gap-2 px-4 py-3 sm:gap-3 sm:px-6">
+      <div className="relative mx-auto flex max-w-6xl items-center gap-2 px-4 py-3 sm:gap-4 sm:px-6">
         <div className="pointer-events-none absolute inset-x-0 top-full h-px bg-gradient-to-r from-transparent via-primary/35 to-transparent" aria-hidden />
 
         <Link href={base} className="flex shrink-0 items-center touch-manipulation" aria-label={dict.header.ariaHome}>
           <Image
-            src="https://www.muamatch.com/assets/LogoPink.svg"
+            src={asset("LogoPink.svg")}
             alt="MUA Match"
-            width={112}
-            height={74}
-            className="h-9 w-auto sm:h-11"
+            width={132}
+            height={87}
+            className="h-[42px] w-auto sm:h-[52px]"
             priority
           />
         </Link>
 
-        <nav className="hidden flex-1 justify-center gap-5 lg:flex xl:gap-6" aria-label={dict.navAria}>
+        <nav className="hidden flex-1 justify-center gap-5 lg:flex xl:gap-7" aria-label={dict.navAria}>
           {nav.map((item) => (
             <Link
               key={item.href}
@@ -53,15 +55,34 @@ export function SiteHeader({
           ))}
         </nav>
 
-        <div className="ml-auto flex items-center gap-1 sm:gap-2">
+        <div className="ml-auto flex items-center gap-2 sm:gap-3">
+          {/* Desktop CTAs */}
+          <Link
+            href={DASHBOARD_URL}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="hidden touch-manipulation rounded-lg border border-border bg-card px-4 py-2 text-sm font-semibold text-foreground transition-colors hover:bg-accent lg:inline-flex"
+          >
+            {dict.nav.login}
+          </Link>
+          <Link
+            href={`${base}#download`}
+            className="hidden touch-manipulation rounded-lg bg-primary px-4 py-2 text-sm font-semibold text-primary-foreground transition-opacity hover:opacity-90 lg:inline-flex"
+          >
+            {dict.nav.download}
+          </Link>
+
+          <LocaleSwitcher locale={locale} ariaLabel={dict.localeSwitcher.label} />
+          <ThemeToggle />
+
+          {/* Mobile menu */}
           <MobileNav
             items={nav}
+            actions={actions}
             ariaLabel={dict.navAria}
             openLabel={dict.header.openMenu}
             closeLabel={dict.header.closeMenu}
           />
-          <LocaleSwitcher locale={locale} ariaLabel={dict.localeSwitcher.label} />
-          <ThemeToggle />
         </div>
       </div>
     </header>

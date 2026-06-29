@@ -8,3 +8,6 @@ deno.lock
 
 # Local Netlify folder
 .netlify
+
+# Local Claude Code settings
+.claude

@@ -1,27 +1,35 @@
 import type { Config } from "tailwindcss";
 
+// Resolve a CSS variable colour while still supporting Tailwind opacity
+// modifiers (e.g. bg-muted/50). color-mix keeps the exact source value
+// (oklch or hex) and applies <alpha-value> as real transparency.
+const c = (v: string) =>
+  `color-mix(in srgb, var(${v}) calc(<alpha-value> * 100%), transparent)`;
+
 export default {
   darkMode: "class",
   content: ["./app/**/*.{ts,tsx}", "./components/**/*.{ts,tsx}"],
   theme: {
     extend: {
       colors: {
-        background: "var(--background)",
-        foreground: "var(--foreground)",
-        card: "var(--card)",
-        "card-foreground": "var(--card-foreground)",
-        primary: "var(--primary)",
-        "primary-foreground": "var(--primary-foreground)",
-        secondary: "var(--secondary)",
-        "secondary-foreground": "var(--secondary-foreground)",
-        muted: "var(--muted)",
-        "muted-foreground": "var(--muted-foreground)",
-        accent: "var(--accent)",
-        "accent-foreground": "var(--accent-foreground)",
-        destructive: "var(--destructive)",
-        border: "var(--border)",
-        input: "var(--input)",
-        ring: "var(--ring)",
+        background: c("--background"),
+        foreground: c("--foreground"),
+        card: c("--card"),
+        "card-foreground": c("--card-foreground"),
+        popover: c("--popover"),
+        "popover-foreground": c("--popover-foreground"),
+        primary: c("--primary"),
+        "primary-foreground": c("--primary-foreground"),
+        secondary: c("--secondary"),
+        "secondary-foreground": c("--secondary-foreground"),
+        muted: c("--muted"),
+        "muted-foreground": c("--muted-foreground"),
+        accent: c("--accent"),
+        "accent-foreground": c("--accent-foreground"),
+        destructive: c("--destructive"),
+        border: c("--border"),
+        input: c("--input"),
+        ring: c("--ring"),
       },
       borderRadius: {
         lg: "var(--radius)",

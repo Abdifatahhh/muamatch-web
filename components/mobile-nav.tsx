@@ -4,13 +4,18 @@ import Link from "next/link";
 import { Menu, X } from "lucide-react";
 import * as React from "react";
 
+type NavItem = { href: string; label: string };
+type Action = { href: string; label: string; variant: "primary" | "outline"; external?: boolean };
+
 export function MobileNav({
   items,
+  actions = [],
   ariaLabel,
   openLabel,
   closeLabel,
 }: {
-  items: { href: string; label: string }[];
+  items: NavItem[];
+  actions?: Action[];
   ariaLabel: string;
   openLabel: string;
   closeLabel: string;
@@ -79,6 +84,28 @@ export function MobileNav({
                 {item.label}
               </Link>
             ))}
+
+            {actions.length > 0 ? (
+              <div className="mt-4 flex flex-col gap-2 border-t border-border pt-4">
+                {actions.map((action) => (
+                  <Link
+                    key={action.href + action.label}
+                    href={action.href}
+                    {...(action.external
+                      ? { target: "_blank", rel: "noopener noreferrer" }
+                      : {})}
+                    onClick={() => setOpen(false)}
+                    className={
+                      action.variant === "primary"
+                        ? "inline-flex min-h-[48px] items-center justify-center rounded-lg bg-primary px-4 text-base font-semibold text-primary-foreground transition-opacity hover:opacity-90"
+                        : "inline-flex min-h-[48px] items-center justify-center rounded-lg border border-border bg-card px-4 text-base font-semibold text-foreground transition-colors hover:bg-accent"
+                    }
+                  >
+                    {action.label}
+                  </Link>
+                ))}
+              </div>
+            ) : null}
           </nav>
         </div>
       ) : null}
