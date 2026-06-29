@@ -5,6 +5,7 @@ import { Roboto } from "next/font/google";
 import "./globals.css";
 import { HtmlLangSync } from "@/components/html-lang-sync";
 import { ThemeProvider } from "@/components/theme-provider";
+import { ScrollFlag } from "@/components/scroll-flag";
 
 const roboto = Roboto({
   subsets: ["latin"],
@@ -29,9 +30,15 @@ export default function RootLayout({ children }: { children: ReactNode }) {
   return (
     <html lang="en" suppressHydrationWarning>
       <body className={`${roboto.variable} font-sans`}>
+        <script
+          dangerouslySetInnerHTML={{
+            __html: "document.documentElement.classList.add('js')",
+          }}
+        />
         <Suspense fallback={null}>
           <HtmlLangSync />
         </Suspense>
+        <ScrollFlag />
         <ThemeProvider attribute="class" defaultTheme="system" enableSystem disableTransitionOnChange>
           {children}
         </ThemeProvider>

@@ -53,7 +53,7 @@ export function ContactForm({ labels }: { labels: Dictionary["contactForm"] }) {
       </label>
       <button
         type="submit"
-        className="min-h-[44px] justify-self-start touch-manipulation rounded-md bg-primary px-6 py-3 text-sm font-semibold text-primary-foreground hover:opacity-90"
+        className="tap min-h-[44px] justify-self-start touch-manipulation rounded-md bg-primary px-6 py-3 text-sm font-semibold text-primary-foreground hover:opacity-90"
       >
         {labels.submit}
       </button>

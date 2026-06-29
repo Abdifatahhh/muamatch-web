@@ -28,7 +28,7 @@ export function SiteHeader({
   ];
 
   return (
-    <header className="sticky top-0 z-50 border-b border-border bg-background/80 backdrop-blur-md supports-[backdrop-filter]:bg-background/70">
+    <header data-site-header className="sticky top-0 z-50 border-b border-border bg-background/80 backdrop-blur-md supports-[backdrop-filter]:bg-background/70">
       <div className="relative mx-auto flex max-w-6xl items-center gap-2 px-4 py-3 sm:gap-4 sm:px-6">
         <div className="pointer-events-none absolute inset-x-0 top-full h-px bg-gradient-to-r from-transparent via-primary/35 to-transparent" aria-hidden />
 
@@ -48,7 +48,7 @@ export function SiteHeader({
             <Link
               key={item.href}
               href={item.href}
-              className="touch-manipulation text-sm font-medium text-muted-foreground transition-colors hover:text-foreground"
+              className="nav-underline touch-manipulation text-sm font-medium text-muted-foreground transition-colors hover:text-foreground"
             >
               {item.label}
             </Link>
@@ -61,13 +61,13 @@ export function SiteHeader({
             href={DASHBOARD_URL}
             target="_blank"
             rel="noopener noreferrer"
-            className="hidden touch-manipulation rounded-lg border border-border bg-card px-4 py-2 text-sm font-semibold text-foreground transition-colors hover:bg-accent lg:inline-flex"
+            className="tap hidden touch-manipulation rounded-lg border border-border bg-card px-4 py-2 text-sm font-semibold text-foreground hover:bg-accent lg:inline-flex"
           >
             {dict.nav.login}
           </Link>
           <Link
             href={`${base}#download`}
-            className="hidden touch-manipulation rounded-lg bg-primary px-4 py-2 text-sm font-semibold text-primary-foreground transition-opacity hover:opacity-90 lg:inline-flex"
+            className="tap hidden touch-manipulation rounded-lg bg-primary px-4 py-2 text-sm font-semibold text-primary-foreground hover:opacity-90 lg:inline-flex"
           >
             {dict.nav.download}
           </Link>

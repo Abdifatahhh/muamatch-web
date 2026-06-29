@@ -97,8 +97,8 @@ export function MobileNav({
                     onClick={() => setOpen(false)}
                     className={
                       action.variant === "primary"
-                        ? "inline-flex min-h-[48px] items-center justify-center rounded-lg bg-primary px-4 text-base font-semibold text-primary-foreground transition-opacity hover:opacity-90"
-                        : "inline-flex min-h-[48px] items-center justify-center rounded-lg border border-border bg-card px-4 text-base font-semibold text-foreground transition-colors hover:bg-accent"
+                        ? "tap inline-flex min-h-[48px] items-center justify-center rounded-lg bg-primary px-4 text-base font-semibold text-primary-foreground hover:opacity-90"
+                        : "tap inline-flex min-h-[48px] items-center justify-center rounded-lg border border-border bg-card px-4 text-base font-semibold text-foreground hover:bg-accent"
                     }
                   >
                     {action.label}
