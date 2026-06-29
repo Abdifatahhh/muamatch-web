@@ -74,17 +74,17 @@ function StoreButtons({
         href={APP_STORE}
         target="_blank"
         rel="noopener noreferrer"
-        className="inline-flex touch-manipulation rounded-lg border border-border bg-card p-2 shadow-sm transition-shadow active:opacity-90 hover:shadow-md"
+        className="inline-flex touch-manipulation rounded-lg transition hover:opacity-90 active:opacity-90 [filter:drop-shadow(0_1px_3px_rgba(0,0,0,0.16))]"
       >
-        <Image src={STORE_ICONS.appStore} alt={appStoreAlt} width={140} height={42} className="h-[42px] w-auto" />
+        <Image src={STORE_ICONS.appStore} alt={appStoreAlt} width={140} height={42} className="h-[46px] w-auto" />
       </Link>
       <Link
         href={PLAY_STORE}
         target="_blank"
         rel="noopener noreferrer"
-        className="inline-flex touch-manipulation rounded-lg border border-border bg-card p-2 shadow-sm transition-shadow active:opacity-90 hover:shadow-md"
+        className="inline-flex touch-manipulation rounded-lg transition hover:opacity-90 active:opacity-90 [filter:drop-shadow(0_1px_3px_rgba(0,0,0,0.16))]"
       >
-        <Image src={STORE_ICONS.playStore} alt={playAlt} width={158} height={42} className="h-[42px] w-auto" />
+        <Image src={STORE_ICONS.playStore} alt={playAlt} width={158} height={42} className="h-[46px] w-auto" />
       </Link>
     </div>
   );

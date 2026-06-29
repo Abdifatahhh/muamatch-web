@@ -76,7 +76,7 @@ export function SiteFooter({
               href={APP_STORE}
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex w-fit touch-manipulation rounded-lg border border-border bg-card p-2 shadow-sm transition-shadow hover:shadow-md"
+              className="inline-flex w-fit touch-manipulation rounded-lg transition hover:opacity-90 [filter:drop-shadow(0_1px_3px_rgba(0,0,0,0.16))]"
             >
               <Image src={STORE_ICONS.appStore} alt={dict.hero.appStoreAlt} width={130} height={39} className="h-[39px] w-auto" />
             </Link>
@@ -84,7 +84,7 @@ export function SiteFooter({
               href={PLAY_STORE}
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex w-fit touch-manipulation rounded-lg border border-border bg-card p-2 shadow-sm transition-shadow hover:shadow-md"
+              className="inline-flex w-fit touch-manipulation rounded-lg transition hover:opacity-90 [filter:drop-shadow(0_1px_3px_rgba(0,0,0,0.16))]"
             >
               <Image src={STORE_ICONS.playStore} alt={dict.hero.playAlt} width={146} height={39} className="h-[39px] w-auto" />
             </Link>
