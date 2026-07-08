@@ -15,10 +15,14 @@ export async function legalRouteMetadata(
   try {
     const doc = await fetchLegalDocument(endpoint, locale);
     const pageTitle = doc.metaTitle || doc.title;
-    const description = doc.metaDescription || `${pageTitle} — MUA Match`;
+    // Some legal docs are titled "MUA Match" already; avoid a doubled brand.
+    const fullTitle = pageTitle.includes("MUA Match")
+      ? pageTitle
+      : `${pageTitle} | MUA Match`;
+    const description = doc.metaDescription || fullTitle;
 
     return {
-      title: `${pageTitle} — MUA Match`,
+      title: fullTitle,
       description,
       alternates: {
         canonical: `/${locale}/${segment}`,
@@ -29,7 +33,7 @@ export async function legalRouteMetadata(
         },
       },
       openGraph: {
-        title: `${pageTitle} — MUA Match`,
+        title: fullTitle,
         description,
         url: `https://muamatch.com/${locale}/${segment}`,
         locale: locale === "nl" ? "nl_NL" : "en_US",

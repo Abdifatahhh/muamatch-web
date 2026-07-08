@@ -179,6 +179,30 @@ details[open] .faq-answer { animation: faqIn 0.25s var(--ease-out); }
   .phone-tilt:hover { transform: perspective(900px) rotateX(3deg) rotateY(-6deg) translateY(-4px); }
 }
 
+/* Floating info chips on hero / section media */
+.chip-float-a { animation: chipFloatA 6s var(--ease-in-out) infinite; }
+.chip-float-b { animation: chipFloatB 7.5s var(--ease-in-out) infinite; }
+@keyframes chipFloatA { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-7px); } }
+@keyframes chipFloatB { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(8px); } }
+
+/* Scrolling city marquee */
+.marquee {
+  position: relative;
+  overflow: hidden;
+  -webkit-mask-image: linear-gradient(to right, transparent, #000 var(--marquee-fade, 4rem), #000 calc(100% - var(--marquee-fade, 4rem)), transparent);
+  mask-image: linear-gradient(to right, transparent, #000 var(--marquee-fade, 4rem), #000 calc(100% - var(--marquee-fade, 4rem)), transparent);
+}
+.marquee-track {
+  display: flex;
+  width: max-content;
+  align-items: center;
+  animation: marqueeMove 34s linear infinite;
+}
+@keyframes marqueeMove {
+  from { transform: translateX(0); }
+  to { transform: translateX(-50%); }
+}
+
 /* Respect reduced motion */
 @media (prefers-reduced-motion: reduce) {
   html.js [data-reveal],
@@ -191,7 +215,10 @@ details[open] .faq-answer { animation: faqIn 0.25s var(--ease-out); }
   .hero-img-in,
   .blob-a,
   .blob-b,
-  .blob-c {
+  .blob-c,
+  .chip-float-a,
+  .chip-float-b,
+  .marquee-track {
     animation: none !important;
   }
   .tap:active,

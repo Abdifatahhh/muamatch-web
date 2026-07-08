@@ -1,11 +1,11 @@
-import Image from "next/image";
 import Link from "next/link";
 import type { Locale } from "@/lib/i18n";
 import type { Dictionary } from "@/lib/dictionaries/types";
 import { LocaleSwitcher } from "@/components/locale-switcher";
+import { Logo } from "@/components/logo";
 import { MobileNav } from "@/components/mobile-nav";
 import { ThemeToggle } from "@/components/theme-toggle";
-import { asset, DASHBOARD_URL } from "@/lib/site";
+import { DASHBOARD_URL } from "@/lib/site";
 
 export function SiteHeader({
   locale,
@@ -23,8 +23,7 @@ export function SiteHeader({
   ];
 
   const actions = [
-    { href: DASHBOARD_URL, label: dict.nav.login, variant: "outline" as const, external: true },
-    { href: `${base}#download`, label: dict.nav.download, variant: "primary" as const },
+    { href: DASHBOARD_URL, label: dict.nav.login, variant: "primary" as const, external: true },
   ];
 
   return (
@@ -33,14 +32,7 @@ export function SiteHeader({
         <div className="pointer-events-none absolute inset-x-0 top-full h-px bg-gradient-to-r from-transparent via-primary/35 to-transparent" aria-hidden />
 
         <Link href={base} className="flex shrink-0 items-center touch-manipulation" aria-label={dict.header.ariaHome}>
-          <Image
-            src={asset("LogoPink.svg")}
-            alt="MUA Match"
-            width={132}
-            height={87}
-            className="h-[42px] w-auto sm:h-[52px]"
-            priority
-          />
+          <Logo />
         </Link>
 
         <nav className="hidden flex-1 justify-center gap-5 lg:flex xl:gap-7" aria-label={dict.navAria}>
@@ -61,15 +53,9 @@ export function SiteHeader({
             href={DASHBOARD_URL}
             target="_blank"
             rel="noopener noreferrer"
-            className="tap hidden touch-manipulation rounded-lg border border-border bg-card px-4 py-2 text-sm font-semibold text-foreground hover:bg-accent lg:inline-flex"
-          >
-            {dict.nav.login}
-          </Link>
-          <Link
-            href={`${base}#download`}
             className="tap hidden touch-manipulation rounded-lg bg-primary px-4 py-2 text-sm font-semibold text-primary-foreground hover:opacity-90 lg:inline-flex"
           >
-            {dict.nav.download}
+            {dict.nav.login}
           </Link>
 
           <LocaleSwitcher locale={locale} ariaLabel={dict.localeSwitcher.label} />

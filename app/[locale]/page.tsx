@@ -1,16 +1,23 @@
 import Image from "next/image";
 import Link from "next/link";
 import { notFound } from "next/navigation";
-import type { ReactNode } from "react";
+import type { ComponentType } from "react";
 import {
   Check,
   Star,
-  Search,
-  UserRound,
-  MessageSquare,
-  CalendarCheck,
-  ChevronDown,
   MapPin,
+  Sparkles,
+  Download,
+  BadgeCheck,
+  ShieldCheck,
+  Images,
+  CalendarCheck,
+  CalendarDays,
+  MessageSquare,
+  TrendingUp,
+  Eye,
+  Inbox,
+  ArrowRight,
 } from "lucide-react";
 import { ContactForm } from "@/components/contact-form";
 import { SiteFooter } from "@/components/site-footer";
@@ -24,7 +31,6 @@ import { isLocale } from "@/lib/i18n";
 import {
   APP_STORE,
   PLAY_STORE,
-  DASHBOARD_URL,
   DASHBOARD_SIGNUP_URL,
   STORE_ICONS,
   INSTAGRAM_URL,
@@ -36,29 +42,76 @@ import {
 } from "@/lib/site";
 
 const PHOTO_QUALITY = 96;
-const HERO_W = 3840;
-const HERO_H = Math.round((700 / 900) * HERO_W);
 
-// One strong photo per featured artist (reused from existing portfolio assets).
-const FEATURED_PHOTOS = [
-  "showcases/showcase1/1.jpg",
-  "showcases/showcase1/2.jpg",
-  "showcases/showcase2/1.jpg",
-  "showcases/showcase2/2.jpg",
-  "showcases/showcase3/1.jpg",
-  "showcases/showcase3/2.jpg",
-  "showcases/showcase1/3.jpg",
-  "showcases/showcase2/3.jpg",
+// Hero photo, served locally from /public. Landscape 3:2 lifestyle shot
+// (artist + client + app mockup); the frame crops the empty left edge.
+const HERO_PHOTO = "/hero.jpg";
+
+// Real app screenshots, served locally from /public/screens.
+// Order matches dict.appScreens.screens: Home, Explore, Glam AI, Bookings, Reviews.
+const APP_SCREENS = [
+  "/screens/home.jpg",
+  "/screens/explore.jpg",
+  "/screens/glam-ai.jpg",
+  "/screens/bookings.jpg",
+  "/screens/reviews.jpg",
 ];
 
-// TODO: drop real app screenshots in here (Search / Profile / Chat / Booking).
-// Leave an entry null to show the styled placeholder frame.
-const APP_SCREEN_SRC: (string | null)[] = [null, null, null, null];
-const APP_SCREEN_ICONS: ReactNode[] = [
-  <Search key="s" className="h-8 w-8" strokeWidth={1.5} />,
-  <UserRound key="p" className="h-8 w-8" strokeWidth={1.5} />,
-  <MessageSquare key="c" className="h-8 w-8" strokeWidth={1.5} />,
-  <CalendarCheck key="b" className="h-8 w-8" strokeWidth={1.5} />,
+// One strong portrait per featured artist (reused from existing portfolio assets).
+const FEATURED_PHOTOS = [
+  "showcases/showcase3/2.jpg",
+  "showcases/showcase1/1.jpg",
+  "showcases/showcase2/1.jpg",
+  "showcases/showcase3/1.jpg",
+];
+
+// Small round social-proof avatars in the hero.
+const HERO_AVATARS = [
+  "showcases/showcase3/2.jpg",
+  "showcases/showcase1/1.jpg",
+  "showcases/showcase2/1.jpg",
+  "showcases/showcase3/1.jpg",
+];
+
+// Collage behind the "For clients" copy.
+const CLIENT_COLLAGE = [
+  "showcases/showcase3/2.jpg",
+  "showcases/showcase1/1.jpg",
+  "showcases/showcase2/1.jpg",
+  "showcases/showcase3/1.jpg",
+];
+
+const EU_CITIES = [
+  "Amsterdam",
+  "Rotterdam",
+  "Paris",
+  "London",
+  "Berlin",
+  "Milan",
+  "Barcelona",
+  "Brussels",
+  "Antwerp",
+  "Vienna",
+  "Madrid",
+  "Lisbon",
+];
+
+const CLIENT_ICONS: ComponentType<{ className?: string; strokeWidth?: number }>[] = [
+  ShieldCheck,
+  Images,
+  CalendarCheck,
+  Star,
+  MessageSquare,
+  Download,
+];
+
+const MUA_ICONS: ComponentType<{ className?: string; strokeWidth?: number }>[] = [
+  Sparkles,
+  Images,
+  Inbox,
+  CalendarDays,
+  MessageSquare,
+  TrendingUp,
 ];
 
 function StoreButtons({
@@ -96,7 +149,7 @@ function Stars({ count = 5 }: { count?: number }) {
   return (
     <div className="flex gap-0.5" aria-hidden>
       {Array.from({ length: count }).map((_, i) => (
-        <Star key={i} className="h-4 w-4 fill-primary text-primary" strokeWidth={0} />
+        <Star key={i} className="h-4 w-4 fill-[#f7c948] text-[#f7c948]" strokeWidth={0} />
       ))}
     </div>
   );
@@ -119,6 +172,8 @@ export default async function HomePage({ params }: { params: Promise<{ locale: s
   const locale: Locale = raw;
   const dict: Dictionary = await getDictionary(locale);
   const base = `/${locale}`;
+  const dash = dict.forMuas.dashboard;
+  const earnings = locale === "nl" ? "1.240" : "1,240";
 
   return (
     <>
@@ -127,61 +182,104 @@ export default async function HomePage({ params }: { params: Promise<{ locale: s
       <main id="main" className="relative overflow-hidden">
         <div className="pointer-events-none absolute inset-0 -z-10">
           <div className="blob-a absolute -left-32 top-24 h-80 w-80 rounded-full bg-primary/10 blur-3xl" />
-          <div className="blob-b absolute -right-24 top-[40%] h-72 w-72 rounded-full bg-accent blur-3xl" />
+          <div className="blob-b absolute -right-24 top-[38%] h-72 w-72 rounded-full bg-accent blur-3xl" />
           <div className="blob-c absolute bottom-0 left-1/3 h-64 w-64 rounded-full bg-secondary/80 blur-3xl" />
         </div>
 
         {/* HERO */}
-        <section className="relative mx-auto max-w-6xl px-4 pb-12 pt-8 sm:px-6 sm:pb-16 sm:pt-12">
-          <div className="grid items-center gap-10 lg:grid-cols-[minmax(0,1fr)_minmax(0,1.05fr)] lg:gap-14">
-            <div>
-              <h1 className="hero-rise text-balance text-3xl font-bold tracking-tight text-foreground sm:text-4xl lg:text-[2.75rem] lg:leading-[1.1]">
+        <section className="relative mx-auto max-w-6xl px-4 pb-14 pt-6 sm:px-6 sm:pb-20 sm:pt-10 lg:pt-14">
+          <div className="grid items-center gap-10 lg:grid-cols-[minmax(0,1fr)_minmax(0,1.06fr)] lg:gap-14">
+            <div className="max-w-xl">
+              <span className="hero-rise inline-flex items-center gap-2 rounded-full border border-primary/25 bg-secondary/70 px-3.5 py-1.5 text-xs font-semibold text-secondary-foreground shadow-sm">
+                <Sparkles className="h-3.5 w-3.5 text-primary" strokeWidth={2.25} aria-hidden />
+                {dict.hero.badge}
+              </span>
+              <h1
+                className="hero-rise mt-5 text-balance text-[2rem] font-bold leading-[1.08] tracking-tight text-foreground sm:text-5xl lg:text-[3.25rem]"
+                style={{ animationDelay: "70ms" }}
+              >
                 {dict.hero.title}
               </h1>
-              <p className="hero-rise mt-4 max-w-xl text-base leading-relaxed text-muted-foreground sm:text-lg" style={{ animationDelay: "80ms" }}>
+              <p
+                className="hero-rise mt-5 max-w-lg text-base leading-relaxed text-muted-foreground sm:text-lg"
+                style={{ animationDelay: "140ms" }}
+              >
                 {dict.hero.lead}
               </p>
-              <div className="hero-rise" style={{ animationDelay: "150ms" }}>
-                <StoreButtons appStoreAlt={dict.hero.appStoreAlt} playAlt={dict.hero.playAlt} className="mt-8" />
+
+              <div className="hero-rise mt-8" id="get-app" style={{ animationDelay: "210ms" }}>
+                <div className="flex flex-wrap items-center gap-x-5 gap-y-4 scroll-mt-28">
+                  <StoreButtons appStoreAlt={dict.hero.appStoreAlt} playAlt={dict.hero.playAlt} />
+                  <div className="hidden items-center gap-2.5 rounded-xl bg-white p-2 pr-3.5 shadow-md ring-1 ring-black/5 lg:flex">
+                    <Image src="/qr-get.svg" alt={dict.getApp.qrLabel} width={58} height={58} unoptimized className="h-[58px] w-[58px]" />
+                    <span className="max-w-[7rem] text-xs font-semibold leading-snug text-neutral-900">
+                      {dict.getApp.qrLabel}
+                    </span>
+                  </div>
+                </div>
+                <p className="mt-3 flex items-center gap-1.5 text-sm font-medium text-muted-foreground">
+                  <Download className="h-4 w-4 text-primary" strokeWidth={2} aria-hidden />
+                  {dict.hero.freeNote}
+                </p>
+              </div>
+
+              <div className="hero-rise mt-8 flex items-center gap-3" style={{ animationDelay: "280ms" }}>
+                <div className="flex -space-x-2.5">
+                  {HERO_AVATARS.map((src) => (
+                    <span
+                      key={src}
+                      className="relative h-9 w-9 overflow-hidden rounded-full border-2 border-background bg-muted"
+                    >
+                      <Image src={asset(src)} alt="" fill className="object-cover" sizes="36px" />
+                    </span>
+                  ))}
+                </div>
+                <div>
+                  <Stars />
+                  <p className="mt-0.5 text-xs text-muted-foreground">{dict.hero.ratingNote}</p>
+                </div>
               </div>
             </div>
 
-            <div className="hero-img-in relative overflow-hidden rounded-2xl border border-border bg-muted shadow-soft">
-              <Image
-                src={asset("mm.webp")}
-                alt={dict.hero.imageAlt}
-                width={HERO_W}
-                height={HERO_H}
-                className="h-auto w-full object-cover md:hidden"
-                sizes="100vw"
-                quality={PHOTO_QUALITY}
-                priority
-              />
-              <Image
-                src={asset("m-banner1.webp")}
-                alt={dict.hero.imageAlt}
-                width={HERO_W}
-                height={HERO_H}
-                className="hidden h-auto w-full object-cover md:block xl:hidden"
-                sizes="(max-width: 1279px) min(94vw, 1600px), 100vw"
-                quality={PHOTO_QUALITY}
-                priority
-              />
-              <Image
-                src={asset("hero-mua.webp")}
-                alt={dict.hero.imageAlt}
-                width={HERO_W}
-                height={HERO_H}
-                className="hidden h-auto w-full object-cover xl:block"
-                sizes="(max-width: 1279px) 100vw, min(54vw, 2000px)"
-                quality={PHOTO_QUALITY}
-                priority
-              />
+            {/* Hero image with floating chips */}
+            <div className="hero-img-in relative">
+              <div className="pointer-events-none absolute -inset-4 -z-10 rounded-[2.5rem] bg-gradient-to-tr from-primary/15 via-secondary/40 to-accent/40 blur-2xl" />
+              <div className="relative mx-auto aspect-[4/3] w-full overflow-hidden rounded-[1.85rem] border border-border bg-muted shadow-soft">
+                <Image
+                  src={HERO_PHOTO}
+                  alt={dict.hero.imageAlt}
+                  fill
+                  className="object-cover object-[80%_50%]"
+                  sizes="(max-width: 1023px) 92vw, 46vw"
+                  quality={PHOTO_QUALITY}
+                  priority
+                />
+              </div>
+
+              <div className="chip-float-a absolute -left-3 top-8 flex items-center gap-2 rounded-xl border border-border bg-background/95 px-3 py-2 shadow-lg backdrop-blur-sm sm:-left-5">
+                <span className="flex h-7 w-7 items-center justify-center rounded-full bg-secondary text-primary">
+                  <BadgeCheck className="h-4 w-4" strokeWidth={2.25} aria-hidden />
+                </span>
+                <span className="text-xs font-semibold text-foreground">{dict.hero.chipVerified}</span>
+              </div>
+
+              <div className="chip-float-b absolute -left-2 bottom-8 flex items-center gap-2 rounded-xl border border-border bg-background/95 px-3 py-2 shadow-lg backdrop-blur-sm sm:-left-5">
+                <span className="flex h-7 w-7 items-center justify-center rounded-full bg-primary text-primary-foreground">
+                  <Check className="h-4 w-4" strokeWidth={3} aria-hidden />
+                </span>
+                <div className="leading-tight">
+                  <p className="text-xs font-semibold text-foreground">{dict.hero.chipBooking}</p>
+                  <p className="flex items-center gap-0.5 text-[10px] text-muted-foreground">
+                    <Star className="h-2.5 w-2.5 fill-[#f7c948] text-[#f7c948]" strokeWidth={0} aria-hidden />
+                    4.9 · Amsterdam
+                  </p>
+                </div>
+              </div>
             </div>
           </div>
         </section>
 
-        {/* SOCIAL PROOF */}
+        {/* SOCIAL PROOF + CITY MARQUEE */}
         <section className="border-y border-border bg-muted/50 py-12 sm:py-14">
           <div className="mx-auto max-w-6xl px-4 sm:px-6">
             <Reveal as="p" className="text-center text-sm font-semibold uppercase tracking-[0.18em] text-muted-foreground">
@@ -199,10 +297,20 @@ export default async function HomePage({ params }: { params: Promise<{ locale: s
               ))}
             </RevealGroup>
           </div>
+          <div className="marquee mt-10 [--marquee-fade:5rem]" aria-hidden>
+            <div className="marquee-track gap-8 text-sm font-semibold text-muted-foreground/70">
+              {[...EU_CITIES, ...EU_CITIES].map((city, i) => (
+                <span key={`${city}-${i}`} className="flex items-center gap-2">
+                  <MapPin className="h-3.5 w-3.5 text-primary/70" strokeWidth={2} />
+                  {city}
+                </span>
+              ))}
+            </div>
+          </div>
         </section>
 
         {/* HOW IT WORKS */}
-        <section id="how-it-works" className="scroll-mt-24 py-14 sm:py-20">
+        <section id="how-it-works" className="scroll-mt-24 py-16 sm:py-24">
           <div className="mx-auto max-w-6xl px-4 sm:px-6">
             <Reveal>
               <h2 className="text-2xl font-bold tracking-tight sm:text-3xl">{dict.howItWorks.title}</h2>
@@ -210,8 +318,11 @@ export default async function HomePage({ params }: { params: Promise<{ locale: s
             </Reveal>
             <RevealGroup as="ol" className="mt-10 grid gap-6 md:grid-cols-3">
               {dict.howItWorks.steps.map((step, index) => (
-                <li key={step.title} className="relative rounded-xl border border-border bg-card p-6 pt-8 shadow-sm">
-                  <span className="absolute left-6 top-0 flex h-8 w-8 -translate-y-1/2 items-center justify-center rounded-full bg-primary text-xs font-bold text-primary-foreground">
+                <li
+                  key={step.title}
+                  className="group relative rounded-xl border border-border bg-card p-6 pt-8 shadow-sm transition hover:-translate-y-1 hover:shadow-md"
+                >
+                  <span className="absolute left-6 top-0 flex h-8 w-8 -translate-y-1/2 items-center justify-center rounded-full bg-primary text-xs font-bold text-primary-foreground shadow-sm">
                     {index + 1}
                   </span>
                   <h3 className="text-lg font-semibold text-foreground">{step.title}</h3>
@@ -219,99 +330,187 @@ export default async function HomePage({ params }: { params: Promise<{ locale: s
                 </li>
               ))}
             </RevealGroup>
-            <div className="mt-8">
-              <Link
-                href={`${base}#download`}
-                className="tap inline-flex min-h-[48px] touch-manipulation items-center justify-center rounded-lg bg-primary px-6 text-sm font-semibold text-primary-foreground hover:opacity-90"
-              >
-                {dict.howItWorks.cta}
-              </Link>
-            </div>
           </div>
         </section>
 
         {/* FOR CLIENTS */}
-        <section id="for-clients" className="scroll-mt-24 border-t border-border py-14 sm:py-20">
+        <section id="for-clients" className="scroll-mt-24 border-t border-border py-16 sm:py-24">
           <div className="mx-auto max-w-6xl px-4 sm:px-6">
-            <Reveal>
-              <p className="text-xs font-semibold uppercase tracking-[0.2em] text-primary">{dict.forClients.eyebrow}</p>
-              <h2 className="mt-2 text-2xl font-bold tracking-tight sm:text-3xl">{dict.forClients.title}</h2>
-              <p className="mt-3 max-w-2xl text-muted-foreground">{dict.forClients.lead}</p>
-            </Reveal>
-            <RevealGroup as="ul" className="mt-8 grid gap-3 sm:grid-cols-2">
-              {dict.forClients.items.map((item) => (
-                <li key={item} className="flex items-center gap-3 rounded-lg border border-border bg-card px-4 py-3.5 shadow-sm">
-                  <span className="flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-secondary text-accent-foreground">
-                    <Check className="h-4 w-4" strokeWidth={2.5} />
-                  </span>
-                  <span className="text-sm font-medium text-card-foreground">{item}</span>
-                </li>
-              ))}
-            </RevealGroup>
-            <div className="mt-8">
-              <Link
-                href={`${base}#download`}
-                className="tap inline-flex min-h-[48px] touch-manipulation items-center justify-center rounded-lg bg-primary px-6 text-sm font-semibold text-primary-foreground hover:opacity-90"
-              >
-                {dict.forClients.cta}
-              </Link>
+            <div className="grid items-center gap-12 lg:grid-cols-2 lg:gap-16">
+              <Reveal>
+                <p className="text-xs font-semibold uppercase tracking-[0.2em] text-primary">{dict.forClients.eyebrow}</p>
+                <h2 className="mt-2 text-2xl font-bold tracking-tight sm:text-3xl">{dict.forClients.title}</h2>
+                <p className="mt-3 max-w-xl text-muted-foreground">{dict.forClients.lead}</p>
+                <ul className="mt-7 grid gap-x-6 gap-y-3.5 sm:grid-cols-2">
+                  {dict.forClients.items.map((item, i) => {
+                    const Icon = CLIENT_ICONS[i % CLIENT_ICONS.length];
+                    return (
+                      <li key={item} className="flex items-center gap-3">
+                        <span className="flex h-8 w-8 shrink-0 items-center justify-center rounded-lg bg-secondary text-primary">
+                          <Icon className="h-4 w-4" strokeWidth={2.25} />
+                        </span>
+                        <span className="text-sm font-medium text-card-foreground">{item}</span>
+                      </li>
+                    );
+                  })}
+                </ul>
+                <div className="mt-8 flex flex-wrap items-center gap-x-5 gap-y-3">
+                  <Link
+                    href={`${base}#get-app`}
+                    className="tap group inline-flex min-h-[52px] touch-manipulation items-center justify-center gap-2 rounded-xl bg-primary px-7 text-base font-semibold text-primary-foreground shadow-sm hover:opacity-90"
+                  >
+                    {dict.forClients.cta}
+                    <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-0.5" strokeWidth={2.25} aria-hidden />
+                  </Link>
+                  <span className="text-sm font-medium text-muted-foreground">{dict.forClients.note}</span>
+                </div>
+              </Reveal>
+
+              <Reveal className="relative">
+                <div className="pointer-events-none absolute -inset-6 -z-10 rounded-[2.5rem] bg-gradient-to-br from-secondary/50 to-accent/40 blur-2xl" />
+                <div className="grid grid-cols-2 gap-3 sm:gap-4">
+                  <div className="space-y-3 sm:space-y-4">
+                    <div className="relative aspect-[3/4] overflow-hidden rounded-2xl border border-border bg-muted shadow-sm">
+                      <Image src={asset(CLIENT_COLLAGE[0])} alt={dict.forClients.mediaAlt} fill className="object-cover" sizes="(max-width:1023px) 45vw, 22vw" quality={PHOTO_QUALITY} />
+                    </div>
+                    <div className="relative aspect-square overflow-hidden rounded-2xl border border-border bg-muted shadow-sm">
+                      <Image src={asset(CLIENT_COLLAGE[1])} alt="" fill className="object-cover" sizes="(max-width:1023px) 45vw, 22vw" quality={PHOTO_QUALITY} />
+                    </div>
+                  </div>
+                  <div className="space-y-3 pt-8 sm:space-y-4">
+                    <div className="relative aspect-square overflow-hidden rounded-2xl border border-border bg-muted shadow-sm">
+                      <Image src={asset(CLIENT_COLLAGE[2])} alt="" fill className="object-cover" sizes="(max-width:1023px) 45vw, 22vw" quality={PHOTO_QUALITY} />
+                    </div>
+                    <div className="relative aspect-[3/4] overflow-hidden rounded-2xl border border-border bg-muted shadow-sm">
+                      <Image src={asset(CLIENT_COLLAGE[3])} alt="" fill className="object-cover" sizes="(max-width:1023px) 45vw, 22vw" quality={PHOTO_QUALITY} />
+                    </div>
+                  </div>
+                </div>
+                <div className="absolute -bottom-4 left-1/2 -translate-x-1/2">
+                  <div className="chip-float-a flex items-center gap-2 rounded-full border border-border bg-background/95 px-4 py-2 shadow-lg backdrop-blur-sm">
+                    <Stars />
+                    <span className="text-xs font-semibold text-foreground">4.9/5</span>
+                  </div>
+                </div>
+              </Reveal>
             </div>
           </div>
         </section>
 
         {/* FOR MUAS */}
-        <section id="for-muas" className="scroll-mt-24 border-t border-border bg-secondary/40 py-14 sm:py-20">
+        <section id="for-muas" className="scroll-mt-24 border-t border-border bg-secondary/40 py-16 sm:py-24">
           <div className="mx-auto max-w-6xl px-4 sm:px-6">
-            <Reveal>
-              <p className="text-xs font-semibold uppercase tracking-[0.2em] text-primary">{dict.forMuas.eyebrow}</p>
-              <h2 className="mt-2 text-2xl font-bold tracking-tight sm:text-3xl">{dict.forMuas.title}</h2>
-              <p className="mt-3 max-w-2xl text-muted-foreground">{dict.forMuas.lead}</p>
-            </Reveal>
-            <RevealGroup as="ul" className="mt-8 grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
-              {dict.forMuas.items.map((item) => (
-                <li key={item} className="flex items-center gap-3 rounded-lg border border-border bg-card px-4 py-3.5 shadow-sm">
-                  <span className="flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-secondary text-accent-foreground">
-                    <Check className="h-4 w-4" strokeWidth={2.5} />
+            <div className="grid items-center gap-12 lg:grid-cols-2 lg:gap-16">
+              <Reveal className="order-2 lg:order-1">
+                <p className="text-xs font-semibold uppercase tracking-[0.2em] text-primary">{dict.forMuas.eyebrow}</p>
+                <h2 className="mt-2 text-2xl font-bold tracking-tight sm:text-3xl">{dict.forMuas.title}</h2>
+                <p className="mt-3 max-w-xl text-muted-foreground">{dict.forMuas.lead}</p>
+                <ul className="mt-7 grid gap-x-6 gap-y-3.5 sm:grid-cols-2">
+                  {dict.forMuas.items.map((item, i) => {
+                    const Icon = MUA_ICONS[i % MUA_ICONS.length];
+                    return (
+                      <li key={item} className="flex items-center gap-3">
+                        <span className="flex h-8 w-8 shrink-0 items-center justify-center rounded-lg bg-card text-primary shadow-sm">
+                          <Icon className="h-4 w-4" strokeWidth={2.25} />
+                        </span>
+                        <span className="text-sm font-medium text-card-foreground">{item}</span>
+                      </li>
+                    );
+                  })}
+                </ul>
+                <div className="mt-8">
+                  <Link
+                    href={DASHBOARD_SIGNUP_URL}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="tap group inline-flex min-h-[54px] touch-manipulation items-center justify-center gap-2 rounded-xl bg-primary px-8 text-base font-semibold text-primary-foreground shadow-md hover:opacity-90"
+                  >
+                    {dict.forMuas.ctaJoin}
+                    <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-0.5" strokeWidth={2.25} aria-hidden />
+                  </Link>
+                  <p className="mt-3 text-sm font-medium text-muted-foreground">{dict.forMuas.note}</p>
+                </div>
+              </Reveal>
+
+              {/* Dashboard mock */}
+              <Reveal className="relative order-1 lg:order-2">
+                <div className="pointer-events-none absolute -inset-6 -z-10 rounded-[2.5rem] bg-gradient-to-br from-primary/15 to-accent/40 blur-2xl" />
+                <div className="relative mx-auto max-w-sm rounded-2xl border border-border bg-card p-5 shadow-soft">
+                  <div className="flex items-center justify-between">
+                    <p className="text-sm font-bold text-foreground">{dash.title}</p>
+                    <span className="inline-flex items-center gap-1.5 rounded-full bg-secondary px-2.5 py-1 text-[11px] font-semibold text-secondary-foreground">
+                      <span className="h-1.5 w-1.5 rounded-full bg-emerald-500 [animation:pulse_2s_ease-in-out_infinite]" />
+                      live
+                    </span>
+                  </div>
+
+                  <div className="mt-4 grid grid-cols-3 gap-2.5">
+                    <div className="rounded-xl border border-border bg-muted/50 p-2.5">
+                      <CalendarCheck className="h-4 w-4 text-primary" strokeWidth={2} aria-hidden />
+                      <CountUp value="128" className="mt-1.5 block text-lg font-bold leading-none text-foreground" />
+                      <span className="mt-1 block text-[10px] text-muted-foreground">{dash.bookingsLabel}</span>
+                    </div>
+                    <div className="rounded-xl border border-border bg-muted/50 p-2.5">
+                      <Star className="h-4 w-4 fill-[#f7c948] text-[#f7c948]" strokeWidth={0} aria-hidden />
+                      <CountUp value="4.9" className="mt-1.5 block text-lg font-bold leading-none text-foreground" />
+                      <span className="mt-1 block text-[10px] text-muted-foreground">{dash.ratingLabel}</span>
+                    </div>
+                    <div className="rounded-xl border border-border bg-muted/50 p-2.5">
+                      <Eye className="h-4 w-4 text-primary" strokeWidth={2} aria-hidden />
+                      <CountUp value="2.4k" className="mt-1.5 block text-lg font-bold leading-none text-foreground" />
+                      <span className="mt-1 block text-[10px] text-muted-foreground">{dash.viewsLabel}</span>
+                    </div>
+                  </div>
+
+                  <div className="mt-4 flex items-end justify-between gap-1.5 rounded-xl border border-border bg-muted/40 px-3 pb-3 pt-4">
+                    {[45, 70, 52, 84, 62, 92, 74].map((h, i) => (
+                      <span
+                        key={i}
+                        className="w-full rounded-t bg-primary/70 last:bg-primary"
+                        style={{ height: `${h}px` }}
+                      />
+                    ))}
+                  </div>
+
+                  <div className="mt-4 flex items-center justify-between rounded-xl bg-primary/10 px-3.5 py-3">
+                    <span className="flex items-center gap-2 text-xs font-semibold text-foreground">
+                      <TrendingUp className="h-4 w-4 text-primary" strokeWidth={2.25} aria-hidden />
+                      {dash.earningsLabel}
+                    </span>
+                    <span className="text-base font-bold text-primary">
+                      €<CountUp value={earnings} className="inline" />
+                    </span>
+                  </div>
+                </div>
+
+                <div className="chip-float-b absolute -bottom-4 -right-2 flex max-w-[15rem] items-center gap-2.5 rounded-xl border border-border bg-background/95 px-3.5 py-2.5 shadow-lg backdrop-blur-sm sm:-right-4">
+                  <span className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-primary text-primary-foreground">
+                    <Inbox className="h-4 w-4" strokeWidth={2.25} aria-hidden />
                   </span>
-                  <span className="text-sm font-medium text-card-foreground">{item}</span>
-                </li>
-              ))}
-            </RevealGroup>
-            <div className="mt-8 flex flex-wrap gap-3">
-              <Link
-                href={DASHBOARD_SIGNUP_URL}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="tap inline-flex min-h-[48px] touch-manipulation items-center justify-center rounded-lg bg-primary px-6 text-sm font-semibold text-primary-foreground hover:opacity-90"
-              >
-                {dict.forMuas.ctaJoin}
-              </Link>
-              <Link
-                href={DASHBOARD_URL}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="tap inline-flex min-h-[48px] touch-manipulation items-center justify-center rounded-lg border border-border bg-card px-6 text-sm font-semibold text-foreground hover:bg-accent"
-              >
-                {dict.forMuas.ctaLogin}
-              </Link>
+                  <div className="leading-tight">
+                    <p className="text-xs font-bold text-foreground">{dash.requestTitle}</p>
+                    <p className="text-[11px] text-muted-foreground">{dash.requestBody}</p>
+                  </div>
+                </div>
+              </Reveal>
             </div>
           </div>
         </section>
 
         {/* FEATURED MAKEUP ARTISTS */}
-        <section id="featured" className="scroll-mt-24 border-t border-border py-14 sm:py-20">
+        <section id="featured" className="scroll-mt-24 border-t border-border py-16 sm:py-24">
           <div className="mx-auto max-w-6xl px-4 sm:px-6">
             <Reveal>
               <h2 className="text-2xl font-bold tracking-tight sm:text-3xl">{dict.featured.title}</h2>
               <p className="mt-3 max-w-2xl text-muted-foreground">{dict.featured.subtitle}</p>
             </Reveal>
-            <RevealGroup as="ul" step={50} className="mt-10 grid grid-cols-2 gap-4 sm:gap-5 lg:grid-cols-4">
+            <RevealGroup as="ul" step={60} className="mt-10 grid grid-cols-2 gap-4 sm:gap-5 lg:grid-cols-4">
               {dict.featured.artists.map((artist, i) => (
                 <li key={artist.name}>
                   <Link
-                    href={`${base}#download`}
-                    aria-label={`${dict.featured.viewLabel} — ${artist.name}`}
-                    className="group block overflow-hidden rounded-xl border border-border bg-card shadow-sm transition hover:-translate-y-1 hover:shadow-md"
+                    href={`${base}#get-app`}
+                    aria-label={`${dict.featured.viewLabel}: ${artist.name}`}
+                    className="group block overflow-hidden rounded-2xl border border-border bg-card shadow-sm transition hover:-translate-y-1 hover:shadow-md"
                   >
                     <div className="relative aspect-[4/5] overflow-hidden bg-muted">
                       <Image
@@ -323,7 +522,7 @@ export default async function HomePage({ params }: { params: Promise<{ locale: s
                         quality={PHOTO_QUALITY}
                       />
                       <span className="absolute right-2 top-2 inline-flex items-center gap-1 rounded-full bg-background/90 px-2 py-1 text-xs font-semibold text-foreground shadow-sm backdrop-blur-sm">
-                        <Star className="h-3.5 w-3.5 fill-primary text-primary" strokeWidth={0} />
+                        <Star className="h-3.5 w-3.5 fill-[#f7c948] text-[#f7c948]" strokeWidth={0} />
                         {artist.rating}
                       </span>
                     </div>
@@ -343,40 +542,37 @@ export default async function HomePage({ params }: { params: Promise<{ locale: s
         </section>
 
         {/* APP SCREENSHOTS */}
-        <section id="app-screenshots" className="scroll-mt-24 border-t border-border bg-muted/50 py-14 sm:py-20">
+        <section id="app-screenshots" className="scroll-mt-24 border-t border-border bg-muted/50 py-16 sm:py-24">
           <div className="mx-auto max-w-6xl px-4 sm:px-6">
             <Reveal>
               <h2 className="text-2xl font-bold tracking-tight sm:text-3xl">{dict.appScreens.title}</h2>
               <p className="mt-3 max-w-2xl text-muted-foreground">{dict.appScreens.subtitle}</p>
             </Reveal>
-            <RevealGroup className="mt-10 grid grid-cols-2 gap-6 lg:grid-cols-4">
-              {dict.appScreens.screens.map((screen, i) => {
-                const src = APP_SCREEN_SRC[i] ?? null;
-                return (
-                  <div key={screen.label} className="flex flex-col items-center text-center">
-                    <div className="phone-tilt relative aspect-[9/19] w-full max-w-[190px] overflow-hidden rounded-[1.75rem] border-[6px] border-foreground/85 bg-foreground/85 shadow-soft">
-                      <span className="absolute left-1/2 top-1.5 z-10 h-1.5 w-14 -translate-x-1/2 rounded-full bg-background/40" aria-hidden />
-                      <div className="relative h-full w-full overflow-hidden rounded-[1.3rem] bg-gradient-to-b from-secondary to-background">
-                        {src ? (
-                          <Image src={asset(src)} alt={screen.label} fill className="object-cover" sizes="190px" quality={PHOTO_QUALITY} />
-                        ) : (
-                          <div className="flex h-full w-full flex-col items-center justify-center gap-3 text-primary">
-                            {APP_SCREEN_ICONS[i]}
-                            <span className="text-sm font-semibold text-foreground">{screen.label}</span>
-                          </div>
-                        )}
-                      </div>
+            <RevealGroup className="mt-12 flex flex-wrap justify-center gap-x-6 gap-y-10 sm:gap-x-8">
+              {dict.appScreens.screens.map((screen, i) => (
+                <div key={screen.label} className="flex w-[9.5rem] flex-col items-center text-center sm:w-[10.5rem] lg:w-[10.75rem]">
+                  <div className="phone-tilt relative aspect-[736/1600] w-full overflow-hidden rounded-[1.6rem] border-[5px] border-foreground/85 bg-foreground/85 shadow-soft sm:rounded-[1.8rem] sm:border-[6px]">
+                    <div className="relative h-full w-full overflow-hidden rounded-[1.2rem] bg-card sm:rounded-[1.35rem]">
+                      <Image
+                        src={APP_SCREENS[i % APP_SCREENS.length]}
+                        alt={`MUA Match app: ${screen.label}`}
+                        fill
+                        className="object-cover object-top"
+                        sizes="(max-width: 639px) 45vw, 172px"
+                        quality={90}
+                      />
                     </div>
-                    <p className="mt-4 max-w-[200px] text-sm text-muted-foreground">{screen.caption}</p>
                   </div>
-                );
-              })}
+                  <p className="mt-3.5 text-sm font-semibold text-foreground">{screen.label}</p>
+                  <p className="mt-1 max-w-[180px] text-xs leading-relaxed text-muted-foreground">{screen.caption}</p>
+                </div>
+              ))}
             </RevealGroup>
           </div>
         </section>
 
         {/* REVIEWS */}
-        <section id="reviews" className="scroll-mt-24 border-t border-border py-14 sm:py-20">
+        <section id="reviews" className="scroll-mt-24 border-t border-border py-16 sm:py-24">
           <div className="mx-auto max-w-6xl px-4 sm:px-6">
             <Reveal>
               <h2 className="text-2xl font-bold tracking-tight sm:text-3xl">{dict.reviews.title}</h2>
@@ -384,7 +580,7 @@ export default async function HomePage({ params }: { params: Promise<{ locale: s
             </Reveal>
             <RevealGroup as="ul" className="mt-10 grid gap-5 md:grid-cols-2">
               {dict.reviews.items.map((review) => (
-                <li key={review.name} className="flex flex-col rounded-xl border border-border bg-card p-6 shadow-sm">
+                <li key={review.name} className="flex flex-col rounded-xl border border-border bg-card p-6 shadow-sm transition hover:-translate-y-1 hover:shadow-md">
                   <div className="flex items-center justify-between">
                     <Stars />
                     <span className="rounded-full bg-secondary px-2.5 py-1 text-xs font-semibold text-accent-foreground">
@@ -407,40 +603,69 @@ export default async function HomePage({ params }: { params: Promise<{ locale: s
           </div>
         </section>
 
-        {/* FAQ */}
-        <section id="faq" className="scroll-mt-24 border-t border-border bg-muted/50 py-14 sm:py-20">
-          <div className="mx-auto max-w-3xl px-4 sm:px-6">
-            <Reveal>
-              <h2 className="text-2xl font-bold tracking-tight sm:text-3xl">{dict.faq.title}</h2>
-              <p className="mt-3 text-muted-foreground">{dict.faq.subtitle}</p>
-            </Reveal>
-            <div className="mt-8 divide-y divide-border overflow-hidden rounded-xl border border-border bg-card">
-              {dict.faq.items.map((item) => (
-                <details key={item.q} className="faq group">
-                  <summary className="tap flex cursor-pointer list-none items-center justify-between gap-4 px-5 py-4 text-base font-semibold text-foreground transition-colors hover:bg-accent/50 [&::-webkit-details-marker]:hidden">
-                    {item.q}
-                    <ChevronDown className="h-5 w-5 shrink-0 text-muted-foreground transition-transform duration-200 group-open:rotate-180" strokeWidth={2} aria-hidden />
-                  </summary>
-                  <div className="faq-answer px-5 pb-5 text-sm leading-relaxed text-muted-foreground">{item.a}</div>
-                </details>
-              ))}
-            </div>
-          </div>
-        </section>
+        {/* GET THE APP */}
+        <section id="download-app" className="scroll-mt-24 border-t border-border py-16 sm:py-24">
+          <div className="mx-auto max-w-6xl px-4 sm:px-6">
+            <Reveal className="relative overflow-hidden rounded-3xl border border-border bg-secondary/50 shadow-soft">
+              <div className="pointer-events-none absolute -right-20 -top-24 h-72 w-72 rounded-full bg-primary/15 blur-3xl" aria-hidden />
+              <div className="pointer-events-none absolute -bottom-24 -left-16 h-64 w-64 rounded-full bg-accent/70 blur-3xl" aria-hidden />
 
-        {/* DOWNLOAD APP */}
-        <section id="download" className="scroll-mt-24 border-t border-border py-16 sm:py-20">
-          <div className="mx-auto max-w-4xl px-4 sm:px-6">
-            <Reveal className="rounded-2xl border border-border bg-secondary/50 px-6 py-12 text-center shadow-soft sm:px-12">
-              <h2 className="text-2xl font-bold tracking-tight text-foreground sm:text-3xl">{dict.downloadApp.title}</h2>
-              <p className="mx-auto mt-3 max-w-xl text-muted-foreground">{dict.downloadApp.lead}</p>
-              <StoreButtons appStoreAlt={dict.hero.appStoreAlt} playAlt={dict.hero.playAlt} className="mt-8 justify-center" />
+              <div className="relative grid items-center gap-10 px-6 py-10 sm:px-10 sm:py-12 lg:grid-cols-[minmax(0,1.15fr)_auto_auto] lg:gap-12">
+                <div>
+                  <h2 className="text-2xl font-bold tracking-tight text-foreground sm:text-3xl">{dict.getApp.title}</h2>
+                  <p className="mt-3 max-w-md text-muted-foreground">{dict.getApp.lead}</p>
+                  <ul className="mt-6 space-y-2.5">
+                    {dict.getApp.bullets.map((item) => (
+                      <li key={item} className="flex items-center gap-2.5 text-sm font-medium text-card-foreground">
+                        <span className="flex h-5 w-5 shrink-0 items-center justify-center rounded-full bg-primary text-primary-foreground">
+                          <Check className="h-3 w-3" strokeWidth={3} aria-hidden />
+                        </span>
+                        {item}
+                      </li>
+                    ))}
+                  </ul>
+                  <StoreButtons appStoreAlt={dict.hero.appStoreAlt} playAlt={dict.hero.playAlt} className="mt-7" />
+                  <div className="mt-4 flex flex-wrap items-center gap-x-5 gap-y-2 text-sm font-medium text-muted-foreground">
+                    <span className="flex items-center gap-1.5">
+                      <Star className="h-4 w-4 fill-[#f7c948] text-[#f7c948]" strokeWidth={0} aria-hidden />
+                      {dict.getApp.ratingLine}
+                    </span>
+                    <span className="flex items-center gap-1.5">
+                      <Download className="h-4 w-4 text-primary" strokeWidth={2} aria-hidden />
+                      {dict.getApp.freeLine}
+                    </span>
+                  </div>
+                </div>
+
+                <div className="hidden flex-col items-center gap-3 sm:flex">
+                  <div className="rounded-2xl bg-white p-4 shadow-lg ring-1 ring-black/5">
+                    <Image src="/qr-get.svg" alt={dict.getApp.qrLabel} width={148} height={148} unoptimized className="h-[148px] w-[148px]" />
+                  </div>
+                  <p className="text-sm font-semibold text-foreground">{dict.getApp.qrLabel}</p>
+                  <p className="max-w-[13rem] text-center text-xs leading-relaxed text-muted-foreground">{dict.getApp.qrHint}</p>
+                </div>
+
+                <div className="mx-auto w-[170px] sm:w-[190px]">
+                  <div className="relative aspect-[736/1600] w-full overflow-hidden rounded-[1.8rem] border-[6px] border-foreground/85 bg-foreground/85 shadow-soft">
+                    <div className="relative h-full w-full overflow-hidden rounded-[1.35rem] bg-card">
+                      <Image
+                        src="/screens/explore.jpg"
+                        alt={`MUA Match app: ${dict.appScreens.screens[1].label}`}
+                        fill
+                        className="object-cover object-top"
+                        sizes="190px"
+                        quality={90}
+                      />
+                    </div>
+                  </div>
+                </div>
+              </div>
             </Reveal>
           </div>
         </section>
 
         {/* CONTACT */}
-        <section id="contact" className="scroll-mt-24 border-t border-border bg-muted/40 py-14 sm:py-20">
+        <section id="contact" className="scroll-mt-24 border-t border-border bg-muted/40 py-16 sm:py-24">
           <div className="mx-auto grid max-w-6xl gap-12 px-4 sm:px-6 lg:grid-cols-2 lg:gap-16">
             <Reveal>
               <h2 className="text-2xl font-bold tracking-tight sm:text-3xl">{dict.contact.title}</h2>

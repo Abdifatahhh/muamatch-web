@@ -7,7 +7,6 @@ export interface Dictionary {
     forMuas: string;
     contact: string;
     login: string;
-    download: string;
   };
   header: { ariaHome: string; openMenu: string; closeMenu: string };
   localeSwitcher: { label: string; en: string; nl: string };
@@ -17,6 +16,11 @@ export interface Dictionary {
     appStoreAlt: string;
     playAlt: string;
     imageAlt: string;
+    badge: string;
+    freeNote: string;
+    ratingNote: string;
+    chipVerified: string;
+    chipBooking: string;
   };
   socialProof: {
     title: string;
@@ -26,7 +30,6 @@ export interface Dictionary {
     title: string;
     subtitle: string;
     steps: { title: string; description: string }[];
-    cta: string;
   };
   forClients: {
     eyebrow: string;
@@ -34,6 +37,8 @@ export interface Dictionary {
     lead: string;
     items: string[];
     cta: string;
+    note: string;
+    mediaAlt: string;
   };
   forMuas: {
     eyebrow: string;
@@ -41,7 +46,16 @@ export interface Dictionary {
     lead: string;
     items: string[];
     ctaJoin: string;
-    ctaLogin: string;
+    note: string;
+    dashboard: {
+      title: string;
+      bookingsLabel: string;
+      ratingLabel: string;
+      viewsLabel: string;
+      earningsLabel: string;
+      requestTitle: string;
+      requestBody: string;
+    };
   };
   featured: {
     title: string;
@@ -67,10 +81,18 @@ export interface Dictionary {
     title: string;
     subtitle: string;
     items: { q: string; a: string }[];
+    backToHome: string;
+    contactPrompt: string;
+    contactCta: string;
   };
-  downloadApp: {
+  getApp: {
     title: string;
     lead: string;
+    qrLabel: string;
+    qrHint: string;
+    ratingLine: string;
+    freeLine: string;
+    bullets: string[];
   };
   contact: { title: string; body: string; socialAria: string };
   contactForm: {

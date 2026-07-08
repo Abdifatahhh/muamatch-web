@@ -2,12 +2,12 @@ import Image from "next/image";
 import Link from "next/link";
 import type { Dictionary } from "@/lib/dictionaries/types";
 import type { Locale } from "@/lib/i18n";
+import { Logo } from "@/components/logo";
 import {
   APP_STORE,
   PLAY_STORE,
   DASHBOARD_URL,
   STORE_ICONS,
-  asset,
 } from "@/lib/site";
 
 export function SiteFooter({
@@ -20,7 +20,7 @@ export function SiteFooter({
   const base = `/${locale}`;
 
   const quickLinks = [
-    { href: `${base}#faq`, label: dict.footer.faq },
+    { href: `${base}/faq`, label: dict.footer.faq },
     { href: `${base}#contact`, label: dict.footer.contact },
     { href: DASHBOARD_URL, label: dict.footer.login, external: true },
   ];
@@ -36,13 +36,7 @@ export function SiteFooter({
       <div className="mx-auto max-w-6xl px-4 py-12 sm:px-6">
         <div className="grid gap-10 sm:grid-cols-2 lg:grid-cols-[1.4fr_1fr_1fr_auto]">
           <div className="max-w-xs">
-            <Image
-              src={asset("LogoPink.svg")}
-              alt="MUA Match"
-              width={132}
-              height={87}
-              className="h-11 w-auto"
-            />
+            <Logo iconClassName="h-9 w-9" textClassName="text-sm" />
             <p className="mt-4 text-sm leading-relaxed text-muted-foreground">{dict.footer.tagline}</p>
           </div>
 
