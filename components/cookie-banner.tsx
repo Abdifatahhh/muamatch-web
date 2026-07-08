@@ -51,7 +51,7 @@ export function CookieBanner({
           }
           setVisible(false);
         }}
-        className="min-h-[44px] shrink-0 rounded-md bg-primary px-5 py-2.5 text-sm font-semibold text-primary-foreground hover:opacity-90 touch-manipulation"
+        className="min-h-[44px] shrink-0 rounded-full bg-primary px-5 py-2.5 text-sm font-semibold text-primary-foreground hover:opacity-90 touch-manipulation"
       >
         {cookie.accept}
       </button>

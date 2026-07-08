@@ -21,7 +21,7 @@ export function SiteFooter({
 
   const quickLinks = [
     { href: `${base}/faq`, label: dict.footer.faq },
-    { href: `${base}#contact`, label: dict.footer.contact },
+    { href: `${base}/contact`, label: dict.footer.contact },
     { href: DASHBOARD_URL, label: dict.footer.login, external: true },
   ];
 
@@ -33,7 +33,7 @@ export function SiteFooter({
 
   return (
     <footer className="border-t border-border bg-muted/40">
-      <div className="mx-auto max-w-6xl px-4 py-12 sm:px-6">
+      <div className="mx-auto max-w-6xl px-4 py-14 sm:px-6 sm:py-16">
         <div className="grid gap-10 sm:grid-cols-2 lg:grid-cols-[1.4fr_1fr_1fr_auto]">
           <div className="max-w-xs">
             <Logo iconClassName="h-9 w-9" textClassName="text-sm" />

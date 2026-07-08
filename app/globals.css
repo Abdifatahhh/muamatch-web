@@ -27,7 +27,7 @@
   --input: oklch(0.922 0 0);
   --ring: #f05d67;
 
-  --radius: 0.75rem;
+  --radius: 1rem;
 
   /* Motion */
   --ease-out: cubic-bezier(0.23, 1, 0.32, 1);

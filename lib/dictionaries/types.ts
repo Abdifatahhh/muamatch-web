@@ -7,6 +7,16 @@ export interface Dictionary {
     forMuas: string;
     contact: string;
     login: string;
+    join: string;
+  };
+  menu: {
+    label: string;
+    open: string;
+    close: string;
+    forClients: string;
+    forMuas: string;
+    downloadApp: string;
+    featured: string;
   };
   header: { ariaHome: string; openMenu: string; closeMenu: string };
   localeSwitcher: { label: string; en: string; nl: string };

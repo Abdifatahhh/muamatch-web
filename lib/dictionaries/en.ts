@@ -12,7 +12,17 @@ const dictionary: Dictionary = {
     forClients: "For Clients",
     forMuas: "For MUAs",
     contact: "Contact",
-    login: "Login",
+    login: "Log in",
+    join: "Join as an artist",
+  },
+  menu: {
+    label: "Menu",
+    open: "Open menu",
+    close: "Close menu",
+    forClients: "For clients",
+    forMuas: "For makeup artists",
+    downloadApp: "Download the app",
+    featured: "Featured artists",
   },
   header: {
     ariaHome: "MUA Match home",

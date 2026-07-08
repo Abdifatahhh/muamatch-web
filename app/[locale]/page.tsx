@@ -19,7 +19,6 @@ import {
   Inbox,
   ArrowRight,
 } from "lucide-react";
-import { ContactForm } from "@/components/contact-form";
 import { SiteFooter } from "@/components/site-footer";
 import { SiteHeader } from "@/components/site-header";
 import { Reveal, RevealGroup } from "@/components/reveal";
@@ -33,11 +32,6 @@ import {
   PLAY_STORE,
   DASHBOARD_SIGNUP_URL,
   STORE_ICONS,
-  INSTAGRAM_URL,
-  TIKTOK_URL,
-  CONTACT_EMAIL,
-  CONTACT_PHONE,
-  CONTACT_PHONE_DISPLAY,
   asset,
 } from "@/lib/site";
 
@@ -187,21 +181,21 @@ export default async function HomePage({ params }: { params: Promise<{ locale: s
         </div>
 
         {/* HERO */}
-        <section className="relative mx-auto max-w-6xl px-4 pb-14 pt-6 sm:px-6 sm:pb-20 sm:pt-10 lg:pt-14">
-          <div className="grid items-center gap-10 lg:grid-cols-[minmax(0,1fr)_minmax(0,1.06fr)] lg:gap-14">
+        <section className="relative mx-auto max-w-6xl px-4 pb-16 pt-8 sm:px-6 sm:pb-24 sm:pt-14 lg:pt-20">
+          <div className="grid items-center gap-10 lg:grid-cols-[minmax(0,1fr)_minmax(0,1.06fr)] lg:gap-16">
             <div className="max-w-xl">
-              <span className="hero-rise inline-flex items-center gap-2 rounded-full border border-primary/25 bg-secondary/70 px-3.5 py-1.5 text-xs font-semibold text-secondary-foreground shadow-sm">
+              <span className="hero-rise inline-flex items-center gap-2 rounded-full border border-primary/25 bg-secondary/70 px-4 py-2 text-xs font-semibold text-secondary-foreground shadow-sm">
                 <Sparkles className="h-3.5 w-3.5 text-primary" strokeWidth={2.25} aria-hidden />
                 {dict.hero.badge}
               </span>
               <h1
-                className="hero-rise mt-5 text-balance text-[2rem] font-bold leading-[1.08] tracking-tight text-foreground sm:text-5xl lg:text-[3.25rem]"
+                className="hero-rise mt-6 text-balance text-[2.6rem] font-bold leading-[1.03] tracking-tight text-foreground sm:text-6xl lg:text-[4.15rem]"
                 style={{ animationDelay: "70ms" }}
               >
                 {dict.hero.title}
               </h1>
               <p
-                className="hero-rise mt-5 max-w-lg text-base leading-relaxed text-muted-foreground sm:text-lg"
+                className="hero-rise mt-6 max-w-lg text-lg leading-relaxed text-muted-foreground sm:text-xl"
                 style={{ animationDelay: "140ms" }}
               >
                 {dict.hero.lead}
@@ -244,7 +238,7 @@ export default async function HomePage({ params }: { params: Promise<{ locale: s
             {/* Hero image with floating chips */}
             <div className="hero-img-in relative">
               <div className="pointer-events-none absolute -inset-4 -z-10 rounded-[2.5rem] bg-gradient-to-tr from-primary/15 via-secondary/40 to-accent/40 blur-2xl" />
-              <div className="relative mx-auto aspect-[4/3] w-full overflow-hidden rounded-[1.85rem] border border-border bg-muted shadow-soft">
+              <div className="relative mx-auto aspect-[4/3] w-full overflow-hidden rounded-[2.25rem] bg-muted shadow-soft">
                 <Image
                   src={HERO_PHOTO}
                   alt={dict.hero.imageAlt}
@@ -280,18 +274,18 @@ export default async function HomePage({ params }: { params: Promise<{ locale: s
         </section>
 
         {/* SOCIAL PROOF + CITY MARQUEE */}
-        <section className="border-y border-border bg-muted/50 py-12 sm:py-14">
+        <section className="py-14 sm:py-20">
           <div className="mx-auto max-w-6xl px-4 sm:px-6">
             <Reveal as="p" className="text-center text-sm font-semibold uppercase tracking-[0.18em] text-muted-foreground">
               {dict.socialProof.title}
             </Reveal>
-            <RevealGroup as="dl" step={80} className="mt-8 grid grid-cols-2 gap-6 lg:grid-cols-4">
+            <RevealGroup as="dl" step={80} className="mt-10 grid grid-cols-2 gap-8 lg:grid-cols-4">
               {dict.socialProof.stats.map((stat) => (
                 <div key={stat.label} className="text-center">
                   <dt className="sr-only">{stat.label}</dt>
                   <dd>
-                    <CountUp value={stat.value} className="block text-3xl font-bold tracking-tight text-primary sm:text-4xl" />
-                    <span className="mt-1 block text-sm text-muted-foreground">{stat.label}</span>
+                    <CountUp value={stat.value} className="block text-4xl font-bold tracking-tight text-foreground sm:text-5xl" />
+                    <span className="mt-2 block text-sm text-muted-foreground">{stat.label}</span>
                   </dd>
                 </div>
               ))}
@@ -310,23 +304,21 @@ export default async function HomePage({ params }: { params: Promise<{ locale: s
         </section>
 
         {/* HOW IT WORKS */}
-        <section id="how-it-works" className="scroll-mt-24 py-16 sm:py-24">
+        <section id="how-it-works" className="scroll-mt-24 bg-muted/40 py-20 sm:py-28">
           <div className="mx-auto max-w-6xl px-4 sm:px-6">
             <Reveal>
-              <h2 className="text-2xl font-bold tracking-tight sm:text-3xl">{dict.howItWorks.title}</h2>
-              <p className="mt-3 max-w-2xl text-muted-foreground">{dict.howItWorks.subtitle}</p>
+              <h2 className="text-3xl font-bold tracking-tight sm:text-4xl">{dict.howItWorks.title}</h2>
+              <p className="mt-4 max-w-2xl text-lg text-muted-foreground">{dict.howItWorks.subtitle}</p>
             </Reveal>
-            <RevealGroup as="ol" className="mt-10 grid gap-6 md:grid-cols-3">
+            <RevealGroup as="ol" className="mt-12 grid gap-5 md:grid-cols-3">
               {dict.howItWorks.steps.map((step, index) => (
                 <li
                   key={step.title}
-                  className="group relative rounded-xl border border-border bg-card p-6 pt-8 shadow-sm transition hover:-translate-y-1 hover:shadow-md"
+                  className="rounded-3xl bg-card p-8 shadow-sm transition hover:-translate-y-1 hover:shadow-md"
                 >
-                  <span className="absolute left-6 top-0 flex h-8 w-8 -translate-y-1/2 items-center justify-center rounded-full bg-primary text-xs font-bold text-primary-foreground shadow-sm">
-                    {index + 1}
-                  </span>
-                  <h3 className="text-lg font-semibold text-foreground">{step.title}</h3>
-                  <p className="mt-2 text-sm leading-relaxed text-muted-foreground">{step.description}</p>
+                  <span className="block text-5xl font-bold leading-none text-primary/25">{index + 1}</span>
+                  <h3 className="mt-5 text-xl font-semibold text-foreground">{step.title}</h3>
+                  <p className="mt-2 text-base leading-relaxed text-muted-foreground">{step.description}</p>
                 </li>
               ))}
             </RevealGroup>
@@ -334,13 +326,13 @@ export default async function HomePage({ params }: { params: Promise<{ locale: s
         </section>
 
         {/* FOR CLIENTS */}
-        <section id="for-clients" className="scroll-mt-24 border-t border-border py-16 sm:py-24">
+        <section id="for-clients" className="scroll-mt-24 py-20 sm:py-28">
           <div className="mx-auto max-w-6xl px-4 sm:px-6">
             <div className="grid items-center gap-12 lg:grid-cols-2 lg:gap-16">
               <Reveal>
                 <p className="text-xs font-semibold uppercase tracking-[0.2em] text-primary">{dict.forClients.eyebrow}</p>
-                <h2 className="mt-2 text-2xl font-bold tracking-tight sm:text-3xl">{dict.forClients.title}</h2>
-                <p className="mt-3 max-w-xl text-muted-foreground">{dict.forClients.lead}</p>
+                <h2 className="mt-3 text-3xl font-bold tracking-tight sm:text-4xl">{dict.forClients.title}</h2>
+                <p className="mt-4 max-w-xl text-lg text-muted-foreground">{dict.forClients.lead}</p>
                 <ul className="mt-7 grid gap-x-6 gap-y-3.5 sm:grid-cols-2">
                   {dict.forClients.items.map((item, i) => {
                     const Icon = CLIENT_ICONS[i % CLIENT_ICONS.length];
@@ -354,10 +346,10 @@ export default async function HomePage({ params }: { params: Promise<{ locale: s
                     );
                   })}
                 </ul>
-                <div className="mt-8 flex flex-wrap items-center gap-x-5 gap-y-3">
+                <div className="mt-9 flex flex-wrap items-center gap-x-5 gap-y-3">
                   <Link
                     href={`${base}#get-app`}
-                    className="tap group inline-flex min-h-[52px] touch-manipulation items-center justify-center gap-2 rounded-xl bg-primary px-7 text-base font-semibold text-primary-foreground shadow-sm hover:opacity-90"
+                    className="tap group inline-flex min-h-[54px] touch-manipulation items-center justify-center gap-2 rounded-full bg-primary px-8 text-base font-semibold text-primary-foreground shadow-sm hover:opacity-90"
                   >
                     {dict.forClients.cta}
                     <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-0.5" strokeWidth={2.25} aria-hidden />
@@ -370,18 +362,18 @@ export default async function HomePage({ params }: { params: Promise<{ locale: s
                 <div className="pointer-events-none absolute -inset-6 -z-10 rounded-[2.5rem] bg-gradient-to-br from-secondary/50 to-accent/40 blur-2xl" />
                 <div className="grid grid-cols-2 gap-3 sm:gap-4">
                   <div className="space-y-3 sm:space-y-4">
-                    <div className="relative aspect-[3/4] overflow-hidden rounded-2xl border border-border bg-muted shadow-sm">
+                    <div className="relative aspect-[3/4] overflow-hidden rounded-[1.75rem] bg-muted shadow-sm">
                       <Image src={asset(CLIENT_COLLAGE[0])} alt={dict.forClients.mediaAlt} fill className="object-cover" sizes="(max-width:1023px) 45vw, 22vw" quality={PHOTO_QUALITY} />
                     </div>
-                    <div className="relative aspect-square overflow-hidden rounded-2xl border border-border bg-muted shadow-sm">
+                    <div className="relative aspect-square overflow-hidden rounded-[1.75rem] bg-muted shadow-sm">
                       <Image src={asset(CLIENT_COLLAGE[1])} alt="" fill className="object-cover" sizes="(max-width:1023px) 45vw, 22vw" quality={PHOTO_QUALITY} />
                     </div>
                   </div>
                   <div className="space-y-3 pt-8 sm:space-y-4">
-                    <div className="relative aspect-square overflow-hidden rounded-2xl border border-border bg-muted shadow-sm">
+                    <div className="relative aspect-square overflow-hidden rounded-[1.75rem] bg-muted shadow-sm">
                       <Image src={asset(CLIENT_COLLAGE[2])} alt="" fill className="object-cover" sizes="(max-width:1023px) 45vw, 22vw" quality={PHOTO_QUALITY} />
                     </div>
-                    <div className="relative aspect-[3/4] overflow-hidden rounded-2xl border border-border bg-muted shadow-sm">
+                    <div className="relative aspect-[3/4] overflow-hidden rounded-[1.75rem] bg-muted shadow-sm">
                       <Image src={asset(CLIENT_COLLAGE[3])} alt="" fill className="object-cover" sizes="(max-width:1023px) 45vw, 22vw" quality={PHOTO_QUALITY} />
                     </div>
                   </div>
@@ -398,13 +390,13 @@ export default async function HomePage({ params }: { params: Promise<{ locale: s
         </section>
 
         {/* FOR MUAS */}
-        <section id="for-muas" className="scroll-mt-24 border-t border-border bg-secondary/40 py-16 sm:py-24">
+        <section id="for-muas" className="scroll-mt-24 bg-secondary/40 py-20 sm:py-28">
           <div className="mx-auto max-w-6xl px-4 sm:px-6">
             <div className="grid items-center gap-12 lg:grid-cols-2 lg:gap-16">
               <Reveal className="order-2 lg:order-1">
                 <p className="text-xs font-semibold uppercase tracking-[0.2em] text-primary">{dict.forMuas.eyebrow}</p>
-                <h2 className="mt-2 text-2xl font-bold tracking-tight sm:text-3xl">{dict.forMuas.title}</h2>
-                <p className="mt-3 max-w-xl text-muted-foreground">{dict.forMuas.lead}</p>
+                <h2 className="mt-3 text-3xl font-bold tracking-tight sm:text-4xl">{dict.forMuas.title}</h2>
+                <p className="mt-4 max-w-xl text-lg text-muted-foreground">{dict.forMuas.lead}</p>
                 <ul className="mt-7 grid gap-x-6 gap-y-3.5 sm:grid-cols-2">
                   {dict.forMuas.items.map((item, i) => {
                     const Icon = MUA_ICONS[i % MUA_ICONS.length];
@@ -418,12 +410,12 @@ export default async function HomePage({ params }: { params: Promise<{ locale: s
                     );
                   })}
                 </ul>
-                <div className="mt-8">
+                <div className="mt-9">
                   <Link
                     href={DASHBOARD_SIGNUP_URL}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="tap group inline-flex min-h-[54px] touch-manipulation items-center justify-center gap-2 rounded-xl bg-primary px-8 text-base font-semibold text-primary-foreground shadow-md hover:opacity-90"
+                    className="tap group inline-flex min-h-[56px] touch-manipulation items-center justify-center gap-2 rounded-full bg-primary px-9 text-base font-semibold text-primary-foreground shadow-md hover:opacity-90"
                   >
                     {dict.forMuas.ctaJoin}
                     <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-0.5" strokeWidth={2.25} aria-hidden />
@@ -435,7 +427,7 @@ export default async function HomePage({ params }: { params: Promise<{ locale: s
               {/* Dashboard mock */}
               <Reveal className="relative order-1 lg:order-2">
                 <div className="pointer-events-none absolute -inset-6 -z-10 rounded-[2.5rem] bg-gradient-to-br from-primary/15 to-accent/40 blur-2xl" />
-                <div className="relative mx-auto max-w-sm rounded-2xl border border-border bg-card p-5 shadow-soft">
+                <div className="relative mx-auto max-w-sm rounded-3xl bg-card p-6 shadow-soft">
                   <div className="flex items-center justify-between">
                     <p className="text-sm font-bold text-foreground">{dash.title}</p>
                     <span className="inline-flex items-center gap-1.5 rounded-full bg-secondary px-2.5 py-1 text-[11px] font-semibold text-secondary-foreground">
@@ -498,19 +490,19 @@ export default async function HomePage({ params }: { params: Promise<{ locale: s
         </section>
 
         {/* FEATURED MAKEUP ARTISTS */}
-        <section id="featured" className="scroll-mt-24 border-t border-border py-16 sm:py-24">
+        <section id="featured" className="scroll-mt-24 py-20 sm:py-28">
           <div className="mx-auto max-w-6xl px-4 sm:px-6">
             <Reveal>
-              <h2 className="text-2xl font-bold tracking-tight sm:text-3xl">{dict.featured.title}</h2>
-              <p className="mt-3 max-w-2xl text-muted-foreground">{dict.featured.subtitle}</p>
+              <h2 className="text-3xl font-bold tracking-tight sm:text-4xl">{dict.featured.title}</h2>
+              <p className="mt-4 max-w-2xl text-lg text-muted-foreground">{dict.featured.subtitle}</p>
             </Reveal>
-            <RevealGroup as="ul" step={60} className="mt-10 grid grid-cols-2 gap-4 sm:gap-5 lg:grid-cols-4">
+            <RevealGroup as="ul" step={60} className="mt-12 grid grid-cols-2 gap-4 sm:gap-6 lg:grid-cols-4">
               {dict.featured.artists.map((artist, i) => (
                 <li key={artist.name}>
                   <Link
                     href={`${base}#get-app`}
                     aria-label={`${dict.featured.viewLabel}: ${artist.name}`}
-                    className="group block overflow-hidden rounded-2xl border border-border bg-card shadow-sm transition hover:-translate-y-1 hover:shadow-md"
+                    className="group block overflow-hidden rounded-3xl bg-card shadow-sm transition hover:-translate-y-1 hover:shadow-md"
                   >
                     <div className="relative aspect-[4/5] overflow-hidden bg-muted">
                       <Image
@@ -542,11 +534,11 @@ export default async function HomePage({ params }: { params: Promise<{ locale: s
         </section>
 
         {/* APP SCREENSHOTS */}
-        <section id="app-screenshots" className="scroll-mt-24 border-t border-border bg-muted/50 py-16 sm:py-24">
+        <section id="app-screenshots" className="scroll-mt-24 bg-muted/40 py-20 sm:py-28">
           <div className="mx-auto max-w-6xl px-4 sm:px-6">
             <Reveal>
-              <h2 className="text-2xl font-bold tracking-tight sm:text-3xl">{dict.appScreens.title}</h2>
-              <p className="mt-3 max-w-2xl text-muted-foreground">{dict.appScreens.subtitle}</p>
+              <h2 className="text-3xl font-bold tracking-tight sm:text-4xl">{dict.appScreens.title}</h2>
+              <p className="mt-4 max-w-2xl text-lg text-muted-foreground">{dict.appScreens.subtitle}</p>
             </Reveal>
             <RevealGroup className="mt-12 flex flex-wrap justify-center gap-x-6 gap-y-10 sm:gap-x-8">
               {dict.appScreens.screens.map((screen, i) => (
@@ -572,15 +564,15 @@ export default async function HomePage({ params }: { params: Promise<{ locale: s
         </section>
 
         {/* REVIEWS */}
-        <section id="reviews" className="scroll-mt-24 border-t border-border py-16 sm:py-24">
+        <section id="reviews" className="scroll-mt-24 py-20 sm:py-28">
           <div className="mx-auto max-w-6xl px-4 sm:px-6">
             <Reveal>
-              <h2 className="text-2xl font-bold tracking-tight sm:text-3xl">{dict.reviews.title}</h2>
-              <p className="mt-3 max-w-2xl text-muted-foreground">{dict.reviews.subtitle}</p>
+              <h2 className="text-3xl font-bold tracking-tight sm:text-4xl">{dict.reviews.title}</h2>
+              <p className="mt-4 max-w-2xl text-lg text-muted-foreground">{dict.reviews.subtitle}</p>
             </Reveal>
-            <RevealGroup as="ul" className="mt-10 grid gap-5 md:grid-cols-2">
+            <RevealGroup as="ul" className="mt-12 grid gap-6 md:grid-cols-2">
               {dict.reviews.items.map((review) => (
-                <li key={review.name} className="flex flex-col rounded-xl border border-border bg-card p-6 shadow-sm transition hover:-translate-y-1 hover:shadow-md">
+                <li key={review.name} className="flex flex-col rounded-3xl bg-muted/40 p-7 transition hover:-translate-y-1 hover:shadow-md sm:p-8">
                   <div className="flex items-center justify-between">
                     <Stars />
                     <span className="rounded-full bg-secondary px-2.5 py-1 text-xs font-semibold text-accent-foreground">
@@ -604,19 +596,21 @@ export default async function HomePage({ params }: { params: Promise<{ locale: s
         </section>
 
         {/* GET THE APP */}
-        <section id="download-app" className="scroll-mt-24 border-t border-border py-16 sm:py-24">
+        <section id="download-app" className="scroll-mt-24 py-20 sm:py-28">
           <div className="mx-auto max-w-6xl px-4 sm:px-6">
-            <Reveal className="relative overflow-hidden rounded-3xl border border-border bg-secondary/50 shadow-soft">
-              <div className="pointer-events-none absolute -right-20 -top-24 h-72 w-72 rounded-full bg-primary/15 blur-3xl" aria-hidden />
-              <div className="pointer-events-none absolute -bottom-24 -left-16 h-64 w-64 rounded-full bg-accent/70 blur-3xl" aria-hidden />
+            <Reveal className="relative overflow-hidden rounded-[2.5rem] bg-[#1c1315] shadow-soft">
+              <div className="pointer-events-none absolute -right-24 -top-28 h-96 w-96 rounded-full bg-primary/30 blur-3xl" aria-hidden />
+              <div className="pointer-events-none absolute -bottom-32 -left-20 h-80 w-80 rounded-full bg-primary/15 blur-3xl" aria-hidden />
 
-              <div className="relative grid items-center gap-10 px-6 py-10 sm:px-10 sm:py-12 lg:grid-cols-[minmax(0,1.15fr)_auto_auto] lg:gap-12">
+              <div className="relative grid items-center gap-10 px-6 py-12 sm:px-12 sm:py-16 lg:grid-cols-[minmax(0,1.15fr)_auto_auto] lg:gap-14">
                 <div>
-                  <h2 className="text-2xl font-bold tracking-tight text-foreground sm:text-3xl">{dict.getApp.title}</h2>
-                  <p className="mt-3 max-w-md text-muted-foreground">{dict.getApp.lead}</p>
-                  <ul className="mt-6 space-y-2.5">
+                  <h2 className="text-3xl font-bold tracking-tight text-white sm:text-4xl lg:text-[2.75rem] lg:leading-[1.1]">
+                    {dict.getApp.title}
+                  </h2>
+                  <p className="mt-4 max-w-md text-lg text-white/70">{dict.getApp.lead}</p>
+                  <ul className="mt-7 space-y-3">
                     {dict.getApp.bullets.map((item) => (
-                      <li key={item} className="flex items-center gap-2.5 text-sm font-medium text-card-foreground">
+                      <li key={item} className="flex items-center gap-3 text-[15px] font-medium text-white/90">
                         <span className="flex h-5 w-5 shrink-0 items-center justify-center rounded-full bg-primary text-primary-foreground">
                           <Check className="h-3 w-3" strokeWidth={3} aria-hidden />
                         </span>
@@ -624,8 +618,8 @@ export default async function HomePage({ params }: { params: Promise<{ locale: s
                       </li>
                     ))}
                   </ul>
-                  <StoreButtons appStoreAlt={dict.hero.appStoreAlt} playAlt={dict.hero.playAlt} className="mt-7" />
-                  <div className="mt-4 flex flex-wrap items-center gap-x-5 gap-y-2 text-sm font-medium text-muted-foreground">
+                  <StoreButtons appStoreAlt={dict.hero.appStoreAlt} playAlt={dict.hero.playAlt} className="mt-8" />
+                  <div className="mt-5 flex flex-wrap items-center gap-x-6 gap-y-2 text-sm font-medium text-white/60">
                     <span className="flex items-center gap-1.5">
                       <Star className="h-4 w-4 fill-[#f7c948] text-[#f7c948]" strokeWidth={0} aria-hidden />
                       {dict.getApp.ratingLine}
@@ -638,16 +632,16 @@ export default async function HomePage({ params }: { params: Promise<{ locale: s
                 </div>
 
                 <div className="hidden flex-col items-center gap-3 sm:flex">
-                  <div className="rounded-2xl bg-white p-4 shadow-lg ring-1 ring-black/5">
-                    <Image src="/qr-get.svg" alt={dict.getApp.qrLabel} width={148} height={148} unoptimized className="h-[148px] w-[148px]" />
+                  <div className="rounded-3xl bg-white p-4 shadow-xl">
+                    <Image src="/qr-get.svg" alt={dict.getApp.qrLabel} width={150} height={150} unoptimized className="h-[150px] w-[150px]" />
                   </div>
-                  <p className="text-sm font-semibold text-foreground">{dict.getApp.qrLabel}</p>
-                  <p className="max-w-[13rem] text-center text-xs leading-relaxed text-muted-foreground">{dict.getApp.qrHint}</p>
+                  <p className="text-sm font-semibold text-white">{dict.getApp.qrLabel}</p>
+                  <p className="max-w-[13rem] text-center text-xs leading-relaxed text-white/55">{dict.getApp.qrHint}</p>
                 </div>
 
                 <div className="mx-auto w-[170px] sm:w-[190px]">
-                  <div className="relative aspect-[736/1600] w-full overflow-hidden rounded-[1.8rem] border-[6px] border-foreground/85 bg-foreground/85 shadow-soft">
-                    <div className="relative h-full w-full overflow-hidden rounded-[1.35rem] bg-card">
+                  <div className="relative aspect-[736/1600] w-full overflow-hidden rounded-[1.8rem] border-[6px] border-white/15 bg-white/10 shadow-xl">
+                    <div className="relative h-full w-full overflow-hidden rounded-[1.35rem] bg-white">
                       <Image
                         src="/screens/explore.jpg"
                         alt={`MUA Match app: ${dict.appScreens.screens[1].label}`}
@@ -660,49 +654,6 @@ export default async function HomePage({ params }: { params: Promise<{ locale: s
                   </div>
                 </div>
               </div>
-            </Reveal>
-          </div>
-        </section>
-
-        {/* CONTACT */}
-        <section id="contact" className="scroll-mt-24 border-t border-border bg-muted/40 py-16 sm:py-24">
-          <div className="mx-auto grid max-w-6xl gap-12 px-4 sm:px-6 lg:grid-cols-2 lg:gap-16">
-            <Reveal>
-              <h2 className="text-2xl font-bold tracking-tight sm:text-3xl">{dict.contact.title}</h2>
-              <p className="mt-3 text-muted-foreground">{dict.contact.body}</p>
-              <p className="mt-6 space-y-1 text-lg font-semibold">
-                <Link href={`mailto:${CONTACT_EMAIL}`} className="block text-primary hover:underline">
-                  {CONTACT_EMAIL}
-                </Link>
-                <Link href={`tel:${CONTACT_PHONE}`} className="block text-foreground hover:text-primary">
-                  {CONTACT_PHONE_DISPLAY}
-                </Link>
-              </p>
-              <ul className="mt-8 flex gap-3" aria-label={dict.contact.socialAria}>
-                <li>
-                  <Link
-                    href={INSTAGRAM_URL}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="tap flex rounded-lg border border-border bg-card p-3 shadow-sm hover:bg-accent"
-                  >
-                    <Image src={asset("iconInstagram_black.svg")} alt="Instagram" width={22} height={22} className="opacity-90" />
-                  </Link>
-                </li>
-                <li>
-                  <Link
-                    href={TIKTOK_URL}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="tap flex rounded-lg border border-border bg-card p-3 shadow-sm hover:bg-accent"
-                  >
-                    <Image src={asset("iconTikTok_black.svg")} alt="TikTok" width={22} height={22} className="opacity-90" />
-                  </Link>
-                </li>
-              </ul>
-            </Reveal>
-            <Reveal>
-              <ContactForm labels={dict.contactForm} />
             </Reveal>
           </div>
         </section>

@@ -21,7 +21,7 @@ export function ContactForm({ labels }: { labels: Dictionary["contactForm"] }) {
   }
 
   return (
-    <form onSubmit={onSubmit} className="grid gap-4 rounded-xl border border-border bg-card p-6 shadow-soft sm:p-8">
+    <form onSubmit={onSubmit} className="grid gap-4 rounded-3xl bg-card p-6 shadow-soft sm:p-8">
       <label className="grid gap-2 text-sm font-medium text-muted-foreground">
         {labels.name}
         <input
@@ -53,7 +53,7 @@ export function ContactForm({ labels }: { labels: Dictionary["contactForm"] }) {
       </label>
       <button
         type="submit"
-        className="tap min-h-[44px] justify-self-start touch-manipulation rounded-md bg-primary px-6 py-3 text-sm font-semibold text-primary-foreground hover:opacity-90"
+        className="tap min-h-[48px] justify-self-start touch-manipulation rounded-full bg-primary px-7 py-3 text-sm font-semibold text-primary-foreground hover:opacity-90"
       >
         {labels.submit}
       </button>

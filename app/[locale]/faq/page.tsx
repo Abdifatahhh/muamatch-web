@@ -64,8 +64,8 @@ export default async function FaqPage({
             {dict.faq.backToHome}
           </Link>
 
-          <h1 className="mt-6 text-3xl font-bold tracking-tight text-foreground sm:text-4xl">{dict.faq.title}</h1>
-          <p className="mt-3 text-muted-foreground">{dict.faq.subtitle}</p>
+          <h1 className="mt-6 text-4xl font-bold tracking-tight text-foreground sm:text-5xl">{dict.faq.title}</h1>
+          <p className="mt-4 text-lg text-muted-foreground">{dict.faq.subtitle}</p>
 
           <div className="mt-8 divide-y divide-border overflow-hidden rounded-xl border border-border bg-card">
             {dict.faq.items.map((item) => (
@@ -83,11 +83,11 @@ export default async function FaqPage({
             ))}
           </div>
 
-          <div className="mt-10 rounded-2xl border border-border bg-secondary/50 px-6 py-8 text-center shadow-soft">
+          <div className="mt-10 rounded-3xl bg-secondary/50 px-6 py-9 text-center shadow-soft">
             <p className="text-lg font-semibold text-foreground">{dict.faq.contactPrompt}</p>
             <Link
-              href={`${base}#contact`}
-              className="tap mt-4 inline-flex min-h-[48px] touch-manipulation items-center justify-center rounded-lg bg-primary px-6 text-sm font-semibold text-primary-foreground hover:opacity-90"
+              href={`${base}/contact`}
+              className="tap mt-4 inline-flex min-h-[48px] touch-manipulation items-center justify-center rounded-full bg-primary px-7 text-sm font-semibold text-primary-foreground hover:opacity-90"
             >
               {dict.faq.contactCta}
             </Link>

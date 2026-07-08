@@ -12,3 +12,4 @@ deno.lock
 # Local Claude Code settings
 .claude
 tsconfig.tsbuildinfo
+*.swp

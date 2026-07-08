@@ -13,6 +13,16 @@ const dictionary: Dictionary = {
     forMuas: "Voor MUA's",
     contact: "Contact",
     login: "Inloggen",
+    join: "Word makeup-artiest",
+  },
+  menu: {
+    label: "Menu",
+    open: "Menu openen",
+    close: "Menu sluiten",
+    forClients: "Voor klanten",
+    forMuas: "Voor makeup-artiesten",
+    downloadApp: "Download de app",
+    featured: "Uitgelichte artiesten",
   },
   header: {
     ariaHome: "MUA Match home",
