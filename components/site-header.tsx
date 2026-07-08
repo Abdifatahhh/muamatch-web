@@ -4,7 +4,7 @@ import type { Dictionary } from "@/lib/dictionaries/types";
 import { Logo } from "@/components/logo";
 import { NavMenu } from "@/components/nav-menu";
 import { ThemeToggle } from "@/components/theme-toggle";
-import { DASHBOARD_URL, DASHBOARD_SIGNUP_URL } from "@/lib/site";
+import { DASHBOARD_URL } from "@/lib/site";
 
 export function SiteHeader({
   locale,
@@ -29,17 +29,9 @@ export function SiteHeader({
             href={DASHBOARD_URL}
             target="_blank"
             rel="noopener noreferrer"
-            className="nav-underline hidden touch-manipulation px-1 text-sm font-semibold text-foreground sm:inline-flex"
+            className="tap hidden touch-manipulation rounded-full bg-primary px-5 py-2.5 text-sm font-semibold text-primary-foreground hover:opacity-90 sm:inline-flex"
           >
             {dict.nav.login}
-          </Link>
-          <Link
-            href={DASHBOARD_SIGNUP_URL}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="tap hidden touch-manipulation rounded-full bg-primary px-5 py-2.5 text-sm font-semibold text-primary-foreground hover:opacity-90 md:inline-flex"
-          >
-            {dict.nav.join}
           </Link>
 
           <ThemeToggle />
