@@ -79,7 +79,9 @@ export function CountUp({
             break;
           }
         },
-        { threshold: 0.5 },
+        // Fire as soon as the number is meaningfully on screen so the count
+        // starts together with the section's other entrance animations.
+        { threshold: 0.3 },
       );
       io.observe(node);
       return () => {
