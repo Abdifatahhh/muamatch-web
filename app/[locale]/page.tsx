@@ -59,29 +59,23 @@ const APP_SCREENS = [
   "/screens/reviews.jpg",
 ];
 
-// Profile photo per artist, order matches dict.featured.artists. Every
-// artist has a distinct model and style (served from /public/looks); Kelly
-// and Sofia lead with their finished looks.
+// Profile photo per artist, order matches dict.featured.artists (four
+// artists; all photos supplied by the client, served from /public/looks).
+// Kelly and Sofia lead with their finished looks.
 const PROFILE_PHOTOS = [
   "/looks/lena.jpg", // Lena: blonde, natural glow
   "/looks/glam.jpg", // Kelly: glam look
   "/looks/diana.jpg", // Diana: curly updo portrait
   "/looks/branding.jpg", // Sofia: clean beauty shot
-  "/looks/amira.jpg", // Amira: warm soft glam
-  "/looks/noor.jpg", // Noor: sleek editorial
 ];
 
 // Hover shot per artist: a finished look for Lena and Diana, an on-set /
-// studio shot for Kelly and Sofia (their profile already shows the look),
-// a soft lips close-up for Amira and an editorial beauty shot for Noor, so
-// every artist in the rotation has two photos.
+// studio shot for Kelly and Sofia (their profile already shows the look).
 const PORTFOLIO_SHOTS = [
   "/looks/natural.jpg",
   "/looks/kelly-studio.jpg",
   "/looks/bridal.jpg",
   "/looks/sofia-shoot.jpg",
-  asset("showcases/showcase1/3.jpg"), // Amira: soft nude lips close-up
-  "/looks/noor-look.jpg", // Noor: editorial beauty shot
 ];
 
 // Small round social-proof avatars in the hero.
@@ -434,8 +428,7 @@ export default async function HomePage({ params }: { params: Promise<{ locale: s
                 </div>
               </Reveal>
 
-              {/* Featured artists, folded into the clients story. Rotates
-                  through a larger pool so the grid feels like a live market. */}
+              {/* Featured artists, folded into the clients story. */}
               <FeaturedArtists
                 artists={dict.featured.artists}
                 photos={PROFILE_PHOTOS}

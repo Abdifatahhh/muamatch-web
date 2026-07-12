@@ -113,8 +113,6 @@ const dictionary: Dictionary = {
       { name: "Kelly Moreau", location: "Parijs, FR", specialty: "Glamour & events", rating: "4,8", verified: true },
       { name: "Diana Velvet", location: "Londen, VK", specialty: "Bruids & editorial", rating: "5,0" },
       { name: "Sofia Russo", location: "Milaan, IT", specialty: "Fotoshoots & branding", rating: "4,7" },
-      { name: "Amira Haddad", location: "Berlijn, DE", specialty: "Soft glam & bruids", rating: "4,9" },
-      { name: "Noor van Dijk", location: "Rotterdam, NL", specialty: "Editorial & beauty", rating: "4,8" },
     ],
     photoAlt: (name) => `${name}, makeup-artiest`,
   },
