@@ -69,10 +69,10 @@ const PROFILE_PHOTOS = [
   "/looks/branding.jpg", // Sofia: clean beauty shot
 ];
 
-// Hover shot per artist: a finished look for Lena and Diana, an on-set /
-// studio shot for Kelly and Sofia (their profile already shows the look).
+// Hover shot per artist: an editorial portrait for Lena, a finished look
+// for Diana, an on-set / studio shot for Kelly and Sofia.
 const PORTFOLIO_SHOTS = [
-  "/looks/natural.jpg",
+  "/looks/lena-look.jpg", // dark long-haired editorial shot
   "/looks/kelly-studio.jpg",
   "/looks/bridal.jpg",
   "/looks/sofia-shoot.jpg",
