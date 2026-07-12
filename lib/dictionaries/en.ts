@@ -8,21 +8,19 @@ const dictionary: Dictionary = {
   },
   navAria: "Main navigation",
   nav: {
-    howItWorks: "How It Works",
     forClients: "For Clients",
     forMuas: "For MUAs",
     contact: "Contact",
-    login: "Log in",
+    login: "MUA Login",
     join: "Join as an artist",
   },
   menu: {
     label: "Menu",
     open: "Open menu",
     close: "Close menu",
-    forClients: "For clients",
-    forMuas: "For makeup artists",
     downloadApp: "Download the app",
-    featured: "Featured artists",
+    help: "Help and support",
+    darkMode: "Dark mode",
   },
   header: {
     ariaHome: "MUA Match home",
@@ -35,7 +33,7 @@ const dictionary: Dictionary = {
     nl: "Nederlands",
   },
   hero: {
-    title: "Find the perfect makeup artist for any occasion.",
+    title: "Find the perfect makeup artist for any occasion",
     lead: "Compare portfolios, rates and availability, and book your match in one app.",
     appStoreAlt: "Download on the App Store",
     playAlt: "Get it on Google Play",
@@ -55,19 +53,23 @@ const dictionary: Dictionary = {
       { value: "4.9", label: "Average rating" },
     ],
   },
-  howItWorks: {
-    title: "How it works",
-    subtitle: "From discovery to booking in three simple steps.",
-    steps: [
-      { title: "Discover", description: "Browse verified makeup artists near you." },
-      { title: "Compare", description: "View portfolios, rates and availability." },
-      { title: "Book", description: "Chat, agree the details and book directly." },
+  whyUs: {
+    title: "Why choose MUA Match?",
+    subtitle: "Everything you need to book with confidence.",
+    items: [
+      { title: "Verified artists", description: "Every artist is checked before they go live on the platform." },
+      { title: "Transparent pricing", description: "Rates are visible on every profile, so you know the price upfront." },
+      { title: "Secure bookings", description: "Every booking is confirmed and tracked in the app." },
+      { title: "No hidden fees", description: "The price you agree on is the price you pay." },
+      { title: "Instant chat", description: "Message your artist directly about looks, timing and details." },
+      { title: "Genuine reviews", description: "Read real experiences from clients before you book." },
     ],
+    badges: ["Trusted across Europe", "Verified artists", "Secure payments"],
   },
   forClients: {
     eyebrow: "For Clients",
     title: "Book a makeup artist with confidence",
-    lead: "Find, compare and book the right artist for your occasion, all in one place.",
+    lead: "Look your best for your wedding, photoshoot or special day. Find, compare and book the right artist, all in one place.",
     items: [
       "Browse verified artists",
       "Compare portfolios & rates",
@@ -76,14 +78,13 @@ const dictionary: Dictionary = {
       "Book & chat in the app",
       "Free to download",
     ],
-    cta: "Find your MUA",
-    note: "Free to download, no booking fees.",
-    mediaAlt: "Makeup looks from artists on MUA Match",
+    cta: "Find your artist today",
+    note: "Free to download.",
   },
   forMuas: {
     eyebrow: "For MUAs",
     title: "Grow your makeup business",
-    lead: "Get discovered by new clients and manage bookings, chats and your portfolio from one dashboard.",
+    lead: "Get discovered by new clients and manage bookings, chats and your portfolio from a single dashboard.",
     items: [
       "Get discovered by new clients",
       "Showcase your portfolio",
@@ -105,21 +106,23 @@ const dictionary: Dictionary = {
     },
   },
   featured: {
-    title: "Featured makeup artists",
-    subtitle: "A glimpse of the talent you'll find across Europe on MUA Match.",
     viewLabel: "View profile",
-    ratingLabel: "Rating",
+    verifiedLabel: "Verified",
     artists: [
       { name: "Lena Vos", location: "Amsterdam, NL", specialty: "Natural & bridal", rating: "4.9" },
-      { name: "Kelly Moreau", location: "Paris, FR", specialty: "Glam & events", rating: "4.8" },
-      { name: "Diana Velvet", location: "London, UK", specialty: "Bridal & editorial", rating: "4.9" },
-      { name: "Sofia Russo", location: "Milan, IT", specialty: "Runway & beauty", rating: "4.8" },
+      { name: "Kelly Moreau", location: "Paris, FR", specialty: "Glam & events", rating: "4.8", verified: true },
+      { name: "Diana Velvet", location: "London, UK", specialty: "Bridal & editorial", rating: "5.0" },
+      { name: "Sofia Russo", location: "Milan, IT", specialty: "Photoshoots & branding", rating: "4.7" },
+      { name: "Amira Haddad", location: "Berlin, DE", specialty: "Soft glam & bridal", rating: "4.9" },
+      { name: "Noor van Dijk", location: "Rotterdam, NL", specialty: "Editorial & beauty", rating: "4.8" },
     ],
     photoAlt: (name) => `${name}, makeup artist`,
   },
   appScreens: {
-    title: "See the app in action",
-    subtitle: "Discover, chat and book, straight from your phone.",
+    title: "Find the perfect makeup artist",
+    subtitle:
+      "Compare portfolios, rates and availability, then book the right artist, all in one app.",
+    cta: "Get the app",
     screens: [
       { label: "Home", caption: "Your appointments and favourite artists at a glance." },
       { label: "Explore", caption: "Find artists by style, rating and location." },
@@ -127,6 +130,16 @@ const dictionary: Dictionary = {
       { label: "Bookings", caption: "Track every request and booking in one place." },
       { label: "Reviews", caption: "Read and share genuine reviews." },
     ],
+    float: {
+      verified: "Verified artist",
+      favorite: "Saved to favourites",
+      chatTitle: "Glam AI",
+      chatBody: "3 artists free this weekend",
+      bookingTitle: "Booking confirmed",
+      bookingBody: "Sat 14:00 · Amsterdam",
+      reviewQuote: "Flawless bridal look, right on time",
+      reviewName: "Emma R.",
+    },
   },
   reviews: {
     title: "Loved by clients and artists",
@@ -140,6 +153,7 @@ const dictionary: Dictionary = {
         name: "Emma R.",
         role: "Bride, London",
         type: "client",
+        stars: 5,
       },
       {
         quote:
@@ -147,6 +161,7 @@ const dictionary: Dictionary = {
         name: "Noa de Vries",
         role: "Client, Amsterdam",
         type: "client",
+        stars: 4.5,
       },
       {
         quote:
@@ -154,13 +169,15 @@ const dictionary: Dictionary = {
         name: "Diana Velvet",
         role: "Makeup artist, London",
         type: "mua",
+        stars: 5,
       },
       {
         quote:
           "I showcase my portfolio and get discovered by clients I'd never have reached otherwise.",
         name: "Amara O.",
-        role: "Makeup artist, Lagos",
+        role: "Makeup artist, Barcelona",
         type: "mua",
+        stars: 4.5,
       },
     ],
   },
@@ -169,32 +186,44 @@ const dictionary: Dictionary = {
     subtitle: "How MUA Match works for clients and makeup artists.",
     items: [
       {
-        q: "Is the app free to download?",
-        a: "Yes. MUA Match is completely free to download and use for both clients and makeup artists, on iOS and Android. There is no subscription and no booking fee. You only pay your artist's rate for the appointment.",
+        q: "How does booking a makeup artist work?",
+        a: "You send a booking request through the app. The artist has 48 hours to accept or decline. After acceptance you pay a 20% deposit within 48 hours, and your booking is confirmed. If the deposit is not paid in time, the request simply expires without any obligations.",
       },
       {
-        q: "How do I book a makeup artist in the app?",
-        a: "Open the app, search by style, location and date, and browse artist profiles. Compare portfolios, rates and reviews, then tap to send a booking request and agree the details in chat. You'll get a confirmation as soon as the artist accepts.",
+        q: "Do I pay the full amount through the app?",
+        a: "No. You only pay the 20% deposit through the platform to confirm the booking. The remaining 80% is settled directly between you and the artist, for example on the day of your appointment.",
       },
       {
-        q: "How do I join as a makeup artist?",
-        a: "Download the app and tap “Join as a makeup artist”. Create your profile, add your portfolio, services and rates, and set your availability. Once you're live, clients nearby can find you and send booking requests straight to your dashboard.",
+        q: "Is MUA Match free to download?",
+        a: "Yes. The app is free to download for both clients and makeup artists. Creating an account costs nothing; you only pay when you actually book.",
       },
       {
-        q: "How do payments and rates work?",
-        a: "Each artist sets their own rates, shown on their profile. You agree the price in chat before confirming, so there are no surprises. Payment is handled directly with your artist for the appointment.",
+        q: "What are the main benefits for clients?",
+        a: "Everything in one place: you browse verified artists, compare portfolios, rates and genuine reviews, chat directly about your look and book in a few taps. Glam AI, the smart assistant in the app, even helps you find the right artist for your occasion. Your appointment is confirmed with a small deposit and tracked in the app.",
       },
       {
-        q: "Can I chat with an artist before I book?",
-        a: "Yes. Once you send a request you can message the artist in the app to discuss the look, location and timing, share references and ask questions before anything is confirmed.",
+        q: "Does MUA Match provide the makeup services?",
+        a: "No. MUA Match is a platform that connects clients with independent makeup artists. The appointment itself is an agreement between you and the artist, who is responsible for carrying out the service.",
       },
       {
-        q: "Can I reschedule or cancel a booking?",
-        a: "Yes. You can reschedule or cancel from the Bookings tab in the app, subject to the cancellation policy shown on the artist's profile.",
+        q: "How do I join MUA Match as a makeup artist?",
+        a: "Artists sign up through the mobile app. Create your account, accept the terms and conditions, and your registration is confirmed by email. After that you can build your profile, portfolio and availability.",
       },
       {
-        q: "Where is MUA Match available?",
-        a: "MUA Match is active across the Netherlands and Europe and keeps growing. Search by location to find artists near you, or filter for artists who travel to you on the day.",
+        q: "What are the main benefits for makeup artists?",
+        a: "You get discovered by clients in your area without doing your own marketing. Booking requests, chat and your calendar live in one dashboard, your portfolio doubles as your storefront, and extras such as promotion packages grow your visibility whenever you want.",
+      },
+      {
+        q: "When do I receive the deposit as an artist?",
+        a: "MUA Match receives the 20% deposit, deducts the service fee and pays out the remainder to you. The other 80% of the session price you arrange directly with your client.",
+      },
+      {
+        q: "Can I arrange payments outside the platform to avoid fees?",
+        a: "No. Structuring payments outside the platform to avoid the platform fees is not allowed and can lead to suspension. The deposit always runs through the platform; only the remaining 80% is settled directly.",
+      },
+      {
+        q: "What happens in case of misuse?",
+        a: "Fake or misleading information, spam, offensive content and bypassing platform payments are not allowed. MUA Match can temporarily block or remove an account in such cases, and users can report misuse to MUA Match.",
       },
     ],
     backToHome: "Back to home",
@@ -233,11 +262,6 @@ const dictionary: Dictionary = {
     text: "This site uses cookies. By continuing you agree.",
     more: "Learn more",
     accept: "OK",
-  },
-  legal: {
-    fetchFailed:
-      "This page could not be loaded. You can read the document on muamatch.com instead.",
-    openOfficial: "Open official page",
   },
   footer: {
     tagline: "Find, compare and book professional makeup artists.",

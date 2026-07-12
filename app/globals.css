@@ -110,6 +110,41 @@ html.js [data-reveal-group][data-shown="true"] > *:nth-child(8) { transition-del
   to { opacity: 1; transform: none; }
 }
 
+/* Hero: drifting radial glow, floating photo card, chip entrances */
+.hero-radial {
+  background: radial-gradient(42% 38% at 68% 30%, var(--secondary), transparent 70%);
+  opacity: 0.55;
+  animation: heroRadial 16s var(--ease-in-out) infinite alternate;
+}
+@keyframes heroRadial {
+  from { transform: translate3d(-2.5%, 1.5%, 0) scale(1); }
+  to { transform: translate3d(2.5%, -2%, 0) scale(1.07); }
+}
+.hero-float { animation: heroFloat 9s var(--ease-in-out) infinite; }
+@keyframes heroFloat {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-6px); }
+}
+.hero-chip-in { animation: heroChipIn 0.6s var(--ease-out) both; }
+@keyframes heroChipIn {
+  from { opacity: 0; transform: translateY(14px) scale(0.95); }
+  to { opacity: 1; transform: none; }
+}
+
+/* Download CTA: slow drifting glow across the dark card, floating phone */
+.cta-drift {
+  background: radial-gradient(46% 42% at 28% 72%, rgba(240, 93, 103, 0.2), transparent 70%);
+  animation: heroRadial 14s var(--ease-in-out) infinite alternate;
+}
+.float-soft { animation: heroFloat 10s var(--ease-in-out) infinite; }
+
+/* Review cards: lift with a hairline border, like the other card families */
+.review-card {
+  border: 1px solid transparent;
+  transition: transform 0.3s var(--ease-out), box-shadow 0.3s var(--ease-out),
+    border-color 0.3s var(--ease-out);
+}
+
 /* Floating decorative blobs */
 .blob-a { animation: floatA 13s var(--ease-in-out) infinite; }
 .blob-b { animation: floatB 16s var(--ease-in-out) infinite; }
@@ -185,6 +220,151 @@ details[open] .faq-answer { animation: faqIn 0.25s var(--ease-out); }
 @keyframes chipFloatA { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-7px); } }
 @keyframes chipFloatB { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(8px); } }
 
+/* App demo: expanding ring where the demo finger taps the screen */
+.demo-ripple { animation: demoRipple 0.6s var(--ease-out) forwards; }
+@keyframes demoRipple {
+  from { transform: translate(-50%, -50%) scale(0.4); opacity: 0.7; }
+  to { transform: translate(-50%, -50%) scale(2.4); opacity: 0; }
+}
+
+/* App demo stage: slow float for both phones, out of phase for depth */
+.demo-float-a { animation: demoFloatA 7s var(--ease-in-out) infinite; }
+.demo-float-b { animation: demoFloatB 9.5s var(--ease-in-out) infinite; }
+@keyframes demoFloatA { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-7px); } }
+@keyframes demoFloatB { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(9px); } }
+
+/* Back phone screen drifts slowly for a lived-in feel */
+.demo-back-drift { animation: demoBackDrift 16s var(--ease-in-out) infinite alternate; }
+@keyframes demoBackDrift {
+  from { transform: scale(1.06) translateY(0.8%); }
+  to { transform: scale(1.1) translateY(-0.8%); }
+}
+
+/* Why-us: reveal variant that also melts away a slight blur */
+html.js .reveal-blur[data-reveal-group] > * {
+  filter: blur(7px);
+  transition: opacity 0.6s var(--ease-out), transform 0.6s var(--ease-out), filter 0.6s var(--ease-out);
+}
+html.js .reveal-blur[data-reveal-group][data-shown="true"] > * {
+  filter: blur(0);
+}
+
+/* Why-us feature cards: lift with a hairline pink border and tinted shadow */
+.feature-card {
+  position: relative;
+  border: 1px solid transparent;
+  transition: transform 0.3s var(--ease-out), box-shadow 0.3s var(--ease-out),
+    border-color 0.3s var(--ease-out);
+}
+/* Spotlight: a faint pink pool that follows the cursor (--spot-x/--spot-y
+   are set by SpotlightCard) and only shows while hovering. */
+.feature-card::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 0.3s var(--ease-out);
+  background: radial-gradient(
+    200px circle at var(--spot-x, 50%) var(--spot-y, 50%),
+    rgba(240, 93, 103, 0.09),
+    transparent 65%
+  );
+}
+.feature-icon {
+  box-shadow: 0 0 0 1px rgba(240, 93, 103, 0.06), 0 6px 18px -4px rgba(240, 93, 103, 0.28);
+  animation: iconFloat 5.5s var(--ease-in-out) infinite;
+}
+.feature-icon svg {
+  transition: transform 0.3s var(--ease-out);
+}
+@keyframes iconFloat {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-3px); }
+}
+
+/* For-MUAs dashboard: stat tiles lift softly, booking chip slides in late */
+.dash-tile {
+  transition: transform 0.3s var(--ease-out), box-shadow 0.3s var(--ease-out),
+    border-color 0.3s var(--ease-out);
+}
+.dash-chip {
+  transition: opacity 0.5s var(--ease-out) 0.45s, transform 0.5s var(--ease-out) 0.45s;
+}
+html.js [data-reveal][data-shown="false"] .dash-chip {
+  opacity: 0;
+  transform: translate(16px, 16px);
+  transition: none;
+}
+
+/* Featured artist cards: lift + hairline border, slow float, glowing rating */
+.mua-card {
+  border: 1px solid transparent;
+  transition: transform 0.3s var(--ease-out), box-shadow 0.3s var(--ease-out),
+    border-color 0.3s var(--ease-out);
+}
+.mua-float-a { animation: muaFloatA 8s var(--ease-in-out) infinite; }
+.mua-float-b { animation: muaFloatB 10s var(--ease-in-out) infinite; }
+@keyframes muaFloatA {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-4px); }
+}
+@keyframes muaFloatB {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(4px); }
+}
+.rating-badge { animation: ratingGlow 3.6s var(--ease-in-out) infinite; }
+@keyframes ratingGlow {
+  0%, 100% { box-shadow: 0 1px 2px rgba(10, 10, 10, 0.08); }
+  50% { box-shadow: 0 1px 2px rgba(10, 10, 10, 0.08), 0 0 14px rgba(247, 201, 72, 0.45); }
+}
+
+/* Why-us trust chips: gentle lift and soft tint on hover */
+.trust-chip {
+  transition: transform 0.25s var(--ease-out), box-shadow 0.25s var(--ease-out),
+    background-color 0.25s var(--ease-out), border-color 0.25s var(--ease-out);
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .feature-card:hover {
+    transform: translateY(-6px);
+    border-color: rgba(240, 93, 103, 0.16);
+    box-shadow: 0 4px 12px rgba(20, 14, 15, 0.05), 0 18px 44px -14px rgba(240, 93, 103, 0.22);
+  }
+  .feature-card:hover .feature-icon svg {
+    transform: scale(1.1);
+  }
+  .feature-card:hover::after {
+    opacity: 1;
+  }
+  .trust-chip:hover {
+    transform: translateY(-3px);
+    background-color: var(--secondary);
+    border-color: rgba(240, 93, 103, 0.2);
+    box-shadow: 0 10px 24px -10px rgba(240, 93, 103, 0.25);
+  }
+  .dash-tile:hover {
+    transform: translateY(-3px);
+    border-color: rgba(240, 93, 103, 0.18);
+    box-shadow: 0 10px 24px -10px rgba(240, 93, 103, 0.22);
+  }
+  .review-card:hover {
+    transform: translateY(-5px);
+    border-color: rgba(240, 93, 103, 0.14);
+    box-shadow: 0 4px 12px rgba(20, 14, 15, 0.05), 0 16px 40px -14px rgba(240, 93, 103, 0.2);
+  }
+  .mua-card:hover {
+    transform: translateY(-6px) scale(1.01);
+    border-color: rgba(240, 93, 103, 0.16);
+    box-shadow: 0 4px 12px rgba(20, 14, 15, 0.05), 0 18px 44px -14px rgba(240, 93, 103, 0.22);
+  }
+}
+
+/* Dashboard chart bars grow up once their reveal parent is shown */
+.bar-rise { transform-origin: bottom; transition: transform 0.8s var(--ease-out); }
+html.js [data-reveal][data-shown="false"] .bar-rise { transform: scaleY(0); transition: none; }
+
 /* Scrolling city marquee */
 .marquee {
   position: relative;
@@ -203,6 +383,18 @@ details[open] .faq-answer { animation: faqIn 0.25s var(--ease-out); }
   to { transform: translateX(-50%); }
 }
 
+/* Mobile: keep reveals to opacity and movement (no blur) and skip the
+   back-phone drift; cheaper compositing on small devices. */
+@media (max-width: 639px) {
+  html.js .reveal-blur[data-reveal-group] > * {
+    filter: none;
+    transition: opacity 0.6s var(--ease-out), transform 0.6s var(--ease-out);
+  }
+  .demo-back-drift {
+    animation: none;
+  }
+}
+
 /* Respect reduced motion */
 @media (prefers-reduced-motion: reduce) {
   html.js [data-reveal],
@@ -210,6 +402,7 @@ details[open] .faq-answer { animation: faqIn 0.25s var(--ease-out); }
     opacity: 1 !important;
     transform: none !important;
     transition: none !important;
+    filter: none !important;
   }
   .hero-rise,
   .hero-img-in,
@@ -218,12 +411,33 @@ details[open] .faq-answer { animation: faqIn 0.25s var(--ease-out); }
   .blob-c,
   .chip-float-a,
   .chip-float-b,
-  .marquee-track {
+  .marquee-track,
+  .demo-ripple,
+  .demo-float-a,
+  .demo-float-b,
+  .demo-back-drift,
+  .feature-icon,
+  .mua-float-a,
+  .mua-float-b,
+  .rating-badge,
+  .animate-ping,
+  .hero-radial,
+  .hero-float,
+  .hero-chip-in,
+  .cta-drift,
+  .float-soft {
     animation: none !important;
   }
   .tap:active,
-  .phone-tilt:hover {
+  .phone-tilt:hover,
+  .feature-card:hover,
+  .trust-chip:hover,
+  .dash-tile:hover,
+  .mua-card:hover,
+  .review-card:hover {
     transform: none;
   }
+  .bar-rise { transition: none !important; transform: none !important; }
+  .dash-chip { transition: none !important; }
   details[open] .faq-answer { animation: none; }
 }

@@ -3,7 +3,6 @@ import type { Locale } from "@/lib/i18n";
 import type { Dictionary } from "@/lib/dictionaries/types";
 import { Logo } from "@/components/logo";
 import { NavMenu } from "@/components/nav-menu";
-import { ThemeToggle } from "@/components/theme-toggle";
 import { DASHBOARD_URL } from "@/lib/site";
 
 export function SiteHeader({
@@ -34,7 +33,6 @@ export function SiteHeader({
             {dict.nav.login}
           </Link>
 
-          <ThemeToggle />
           {/* Client component: pass a plain-string subset (full dict holds functions). */}
           <NavMenu
             locale={locale}

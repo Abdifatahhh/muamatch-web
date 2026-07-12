@@ -55,7 +55,7 @@ export default async function FaqPage({
           <div className="blob-c absolute bottom-10 right-1/4 h-64 w-64 rounded-full bg-secondary/70 blur-3xl" />
         </div>
 
-        <section className="mx-auto max-w-3xl px-4 py-14 sm:px-6 sm:py-20">
+        <section className="mx-auto max-w-3xl px-4 py-12 sm:px-6 sm:py-16">
           <Link
             href={base}
             className="nav-underline inline-flex w-fit items-center gap-1.5 text-sm font-medium text-muted-foreground transition-colors hover:text-foreground"

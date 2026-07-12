@@ -12,8 +12,7 @@ export const DASHBOARD_SIGNUP_URL = "https://dashboard.muamatch.com/signup";
 export const INSTAGRAM_URL = "https://www.instagram.com/mua.match/";
 export const TIKTOK_URL = "https://www.tiktok.com/@mua.match";
 export const CONTACT_EMAIL = "info@muamatch.com";
-export const CONTACT_PHONE = "+31641881564";
-export const CONTACT_PHONE_DISPLAY = "+31 6 41 88 15 64";
+export const SUPPORT_EMAIL = "support@muamatch.com";
 
 const ASSET_BASE = "https://www.muamatch.com/assets";
 export const asset = (path: string) => `${ASSET_BASE}/${path}`;

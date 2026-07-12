@@ -2,7 +2,6 @@ export interface Dictionary {
   meta: { title: string; description: string };
   navAria: string;
   nav: {
-    howItWorks: string;
     forClients: string;
     forMuas: string;
     contact: string;
@@ -13,10 +12,9 @@ export interface Dictionary {
     label: string;
     open: string;
     close: string;
-    forClients: string;
-    forMuas: string;
     downloadApp: string;
-    featured: string;
+    help: string;
+    darkMode: string;
   };
   header: { ariaHome: string; openMenu: string; closeMenu: string };
   localeSwitcher: { label: string; en: string; nl: string };
@@ -36,10 +34,11 @@ export interface Dictionary {
     title: string;
     stats: { value: string; label: string }[];
   };
-  howItWorks: {
+  whyUs: {
     title: string;
     subtitle: string;
-    steps: { title: string; description: string }[];
+    items: { title: string; description: string }[];
+    badges: string[];
   };
   forClients: {
     eyebrow: string;
@@ -48,7 +47,6 @@ export interface Dictionary {
     items: string[];
     cta: string;
     note: string;
-    mediaAlt: string;
   };
   forMuas: {
     eyebrow: string;
@@ -68,24 +66,33 @@ export interface Dictionary {
     };
   };
   featured: {
-    title: string;
-    subtitle: string;
     viewLabel: string;
-    ratingLabel: string;
-    artists: { name: string; location: string; specialty: string; rating: string }[];
+    verifiedLabel: string;
+    artists: { name: string; location: string; specialty: string; rating: string; verified?: boolean }[];
     photoAlt: (name: string) => string;
   };
   appScreens: {
     title: string;
     subtitle: string;
+    cta: string;
     screens: { label: string; caption: string }[];
+    float: {
+      verified: string;
+      favorite: string;
+      chatTitle: string;
+      chatBody: string;
+      bookingTitle: string;
+      bookingBody: string;
+      reviewQuote: string;
+      reviewName: string;
+    };
   };
   reviews: {
     title: string;
     subtitle: string;
     clientLabel: string;
     muaLabel: string;
-    items: { quote: string; name: string; role: string; type: "client" | "mua" }[];
+    items: { quote: string; name: string; role: string; type: "client" | "mua"; stars: number }[];
   };
   faq: {
     title: string;
@@ -119,10 +126,6 @@ export interface Dictionary {
     mailBodyEmailPrefix: string;
   };
   cookie: { bannerAria: string; text: string; more: string; accept: string };
-  legal: {
-    fetchFailed: string;
-    openOfficial: string;
-  };
   footer: {
     tagline: string;
     quickLinksAria: string;

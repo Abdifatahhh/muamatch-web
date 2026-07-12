@@ -8,21 +8,19 @@ const dictionary: Dictionary = {
   },
   navAria: "Hoofdmenu",
   nav: {
-    howItWorks: "Zo werkt het",
     forClients: "Voor klanten",
     forMuas: "Voor MUA's",
     contact: "Contact",
-    login: "Inloggen",
+    login: "MUA Login",
     join: "Word makeup-artiest",
   },
   menu: {
     label: "Menu",
     open: "Menu openen",
     close: "Menu sluiten",
-    forClients: "Voor klanten",
-    forMuas: "Voor makeup-artiesten",
     downloadApp: "Download de app",
-    featured: "Uitgelichte artiesten",
+    help: "Hulp en ondersteuning",
+    darkMode: "Donkere modus",
   },
   header: {
     ariaHome: "MUA Match home",
@@ -35,7 +33,7 @@ const dictionary: Dictionary = {
     nl: "Nederlands",
   },
   hero: {
-    title: "Vind de perfecte makeup-artiest voor elke gelegenheid.",
+    title: "Vind de perfecte makeup-artiest voor elke gelegenheid",
     lead: "Vergelijk portfolio's, tarieven en beschikbaarheid en boek je match in één app.",
     appStoreAlt: "Download in de App Store",
     playAlt: "Ontdek het op Google Play",
@@ -55,19 +53,23 @@ const dictionary: Dictionary = {
       { value: "4,9", label: "Gemiddelde score" },
     ],
   },
-  howItWorks: {
-    title: "Zo werkt het",
-    subtitle: "Van ontdekken tot boeken in drie eenvoudige stappen.",
-    steps: [
-      { title: "Ontdek", description: "Blader door geverifieerde artiesten bij jou in de buurt." },
-      { title: "Vergelijk", description: "Bekijk portfolio's, tarieven en beschikbaarheid." },
-      { title: "Boek", description: "Chat, stem de details af en boek direct." },
+  whyUs: {
+    title: "Waarom MUA Match?",
+    subtitle: "Alles wat je nodig hebt om met vertrouwen te boeken.",
+    items: [
+      { title: "Geverifieerde artiesten", description: "Elke artiest wordt gecheckt voordat die live gaat op het platform." },
+      { title: "Transparante prijzen", description: "Tarieven staan op elk profiel, dus je kent de prijs vooraf." },
+      { title: "Veilige boekingen", description: "Elke boeking wordt bevestigd en bijgehouden in de app." },
+      { title: "Geen verborgen kosten", description: "De prijs die je afspreekt is de prijs die je betaalt." },
+      { title: "Direct chatten", description: "Chat rechtstreeks met je artiest over de look, timing en details." },
+      { title: "Echte reviews", description: "Lees echte ervaringen van klanten voordat je boekt." },
     ],
+    badges: ["Vertrouwd in heel Europa", "Geverifieerde artiesten", "Veilige betalingen"],
   },
   forClients: {
     eyebrow: "Voor klanten",
     title: "Boek met vertrouwen een makeup-artiest",
-    lead: "Vind, vergelijk en boek de juiste artiest voor jouw gelegenheid, alles op één plek.",
+    lead: "Zie er op je best uit op je bruiloft, fotoshoot of speciale dag. Vind, vergelijk en boek de juiste artiest, alles op één plek.",
     items: [
       "Bekijk geverifieerde artiesten",
       "Vergelijk portfolio's & tarieven",
@@ -76,9 +78,8 @@ const dictionary: Dictionary = {
       "Boek & chat in de app",
       "Gratis te downloaden",
     ],
-    cta: "Vind jouw MUA",
-    note: "Gratis te downloaden, geen boekingskosten.",
-    mediaAlt: "Makeup-looks van artiesten op MUA Match",
+    cta: "Vind vandaag jouw artiest",
+    note: "Gratis te downloaden.",
   },
   forMuas: {
     eyebrow: "Voor MUA's",
@@ -105,21 +106,23 @@ const dictionary: Dictionary = {
     },
   },
   featured: {
-    title: "Uitgelichte makeup-artiesten",
-    subtitle: "Een voorproefje van het talent dat je in heel Europa vindt op MUA Match.",
     viewLabel: "Bekijk profiel",
-    ratingLabel: "Score",
+    verifiedLabel: "Geverifieerd",
     artists: [
       { name: "Lena Vos", location: "Amsterdam, NL", specialty: "Naturel & bruids", rating: "4,9" },
-      { name: "Kelly Moreau", location: "Parijs, FR", specialty: "Glamour & events", rating: "4,8" },
-      { name: "Diana Velvet", location: "Londen, VK", specialty: "Bruids & editorial", rating: "4,9" },
-      { name: "Sofia Russo", location: "Milaan, IT", specialty: "Runway & beauty", rating: "4,8" },
+      { name: "Kelly Moreau", location: "Parijs, FR", specialty: "Glamour & events", rating: "4,8", verified: true },
+      { name: "Diana Velvet", location: "Londen, VK", specialty: "Bruids & editorial", rating: "5,0" },
+      { name: "Sofia Russo", location: "Milaan, IT", specialty: "Fotoshoots & branding", rating: "4,7" },
+      { name: "Amira Haddad", location: "Berlijn, DE", specialty: "Soft glam & bruids", rating: "4,9" },
+      { name: "Noor van Dijk", location: "Rotterdam, NL", specialty: "Editorial & beauty", rating: "4,8" },
     ],
     photoAlt: (name) => `${name}, makeup-artiest`,
   },
   appScreens: {
-    title: "Zie de app in actie",
-    subtitle: "Ontdekken, chatten en boeken, gewoon vanaf je telefoon.",
+    title: "Vind de perfecte makeup-artiest",
+    subtitle:
+      "Vergelijk portfolio's, tarieven en beschikbaarheid en boek de juiste artiest, alles in één app.",
+    cta: "Download de app",
     screens: [
       { label: "Home", caption: "Je afspraken en favoriete artiesten in één oogopslag." },
       { label: "Ontdek", caption: "Vind artiesten op stijl, beoordeling en locatie." },
@@ -127,6 +130,16 @@ const dictionary: Dictionary = {
       { label: "Boekingen", caption: "Volg elke aanvraag en boeking op één plek." },
       { label: "Reviews", caption: "Lees en deel eerlijke reviews." },
     ],
+    float: {
+      verified: "Geverifieerde artiest",
+      favorite: "Bewaard als favoriet",
+      chatTitle: "Glam AI",
+      chatBody: "3 artiesten vrij dit weekend",
+      bookingTitle: "Boeking bevestigd",
+      bookingBody: "za 14:00 · Amsterdam",
+      reviewQuote: "Prachtige bruidslook, precies op tijd",
+      reviewName: "Emma R.",
+    },
   },
   reviews: {
     title: "Geliefd bij klanten en artiesten",
@@ -140,6 +153,7 @@ const dictionary: Dictionary = {
         name: "Emma R.",
         role: "Bruid, Londen",
         type: "client",
+        stars: 5,
       },
       {
         quote:
@@ -147,6 +161,7 @@ const dictionary: Dictionary = {
         name: "Noa de Vries",
         role: "Klant, Amsterdam",
         type: "client",
+        stars: 4.5,
       },
       {
         quote:
@@ -154,13 +169,15 @@ const dictionary: Dictionary = {
         name: "Diana Velvet",
         role: "Makeup-artiest, Londen",
         type: "mua",
+        stars: 5,
       },
       {
         quote:
           "Ik toon mijn portfolio en word ontdekt door klanten die ik anders nooit had bereikt.",
         name: "Amara O.",
-        role: "Makeup-artiest, Lagos",
+        role: "Makeup-artiest, Barcelona",
         type: "mua",
+        stars: 4.5,
       },
     ],
   },
@@ -169,32 +186,44 @@ const dictionary: Dictionary = {
     subtitle: "Hoe MUA Match werkt voor klanten en makeup-artiesten.",
     items: [
       {
-        q: "Is de app gratis te downloaden?",
-        a: "Ja. MUA Match is volledig gratis te downloaden en te gebruiken voor zowel klanten als makeup-artiesten, op iOS en Android. Geen abonnement en geen boekingskosten. Je betaalt alleen het tarief van je artiest voor de afspraak.",
+        q: "Hoe werkt het boeken van een makeup-artiest?",
+        a: "Je stuurt een boekingsaanvraag via de app. De artiest heeft 48 uur om te accepteren of te weigeren. Na acceptatie betaal je binnen 48 uur een aanbetaling van 20% en is je boeking definitief. Betaal je de aanbetaling niet op tijd, dan vervalt de aanvraag automatisch zonder verplichtingen.",
       },
       {
-        q: "Hoe boek ik een makeup-artiest in de app?",
-        a: "Open de app, zoek op stijl, locatie en datum en bekijk artiestprofielen. Vergelijk portfolio's, tarieven en reviews, tik dan op boeken om een aanvraag te sturen en stem de details af in de chat. Je krijgt een bevestiging zodra de artiest accepteert.",
+        q: "Betaal ik het hele bedrag via de app?",
+        a: "Nee. Via het platform betaal je alleen de aanbetaling van 20% om de boeking te bevestigen. De resterende 80% reken je rechtstreeks af met de artiest, bijvoorbeeld op de dag van je afspraak.",
+      },
+      {
+        q: "Is MUA Match gratis te downloaden?",
+        a: "Ja. De app is gratis te downloaden voor zowel klanten als makeup-artiesten. Een account aanmaken kost niets; je betaalt pas iets bij een daadwerkelijke boeking.",
+      },
+      {
+        q: "Wat zijn de grootste voordelen voor klanten?",
+        a: "Alles op één plek: je bekijkt geverifieerde artiesten, vergelijkt portfolio's, tarieven en echte reviews, chat direct over je look en boekt in een paar tikken. Glam AI, de slimme assistent in de app, helpt je bovendien de juiste artiest voor jouw gelegenheid te vinden. Je afspraak is bevestigd met een kleine aanbetaling en staat overzichtelijk in de app.",
+      },
+      {
+        q: "Levert MUA Match zelf de make-updiensten?",
+        a: "Nee. MUA Match is een platform dat klanten koppelt aan zelfstandige makeup-artiesten. De afspraak zelf is een overeenkomst tussen jou en de artiest, die verantwoordelijk is voor de uitvoering.",
       },
       {
         q: "Hoe meld ik me aan als makeup-artiest?",
-        a: "Download de app en tik op “Aanmelden als makeup-artiest”. Maak je profiel aan, voeg je portfolio, diensten en tarieven toe en stel je beschikbaarheid in. Zodra je live staat, vinden klanten in de buurt je en sturen ze aanvragen rechtstreeks naar je dashboard.",
+        a: "Artiesten melden zich aan via de mobiele app. Maak je account aan, ga akkoord met de algemene voorwaarden en je registratie wordt per e-mail bevestigd. Daarna richt je je profiel, portfolio en beschikbaarheid in.",
       },
       {
-        q: "Hoe werken betalingen en tarieven?",
-        a: "Elke artiest bepaalt de eigen tarieven, die op het profiel staan. Je spreekt de prijs af in de chat vóór je bevestigt, dus geen verrassingen. De betaling regel je rechtstreeks met je artiest voor de afspraak.",
+        q: "Wat zijn de grootste voordelen voor makeup-artiesten?",
+        a: "Je wordt gevonden door klanten in jouw regio zonder eigen marketing. Boekingsaanvragen, chat en je agenda zitten in één dashboard, je portfolio is meteen je etalage, en met extra's zoals promotiepakketten vergroot je je zichtbaarheid wanneer jij dat wilt.",
       },
       {
-        q: "Kan ik chatten met een artiest voordat ik boek?",
-        a: "Ja. Zodra je een aanvraag stuurt kun je de artiest een bericht sturen in de app om de look, locatie en timing te bespreken, referenties te delen en vragen te stellen voordat er iets vaststaat.",
+        q: "Wanneer ontvang ik als artiest de aanbetaling?",
+        a: "MUA Match ontvangt de aanbetaling van 20%, houdt de service fee in en keert de rest aan je uit. De overige 80% van de sessieprijs regel je rechtstreeks met je klant.",
       },
       {
-        q: "Kan ik een boeking verzetten of annuleren?",
-        a: "Ja. Je verzet of annuleert vanuit het tabblad Boekingen in de app, afhankelijk van het annuleringsbeleid dat op het profiel van de artiest staat.",
+        q: "Mag ik betalingen buiten het platform om regelen om kosten te vermijden?",
+        a: "Nee. Betalingen zo structureren dat platformvergoedingen worden ontweken is niet toegestaan en kan leiden tot blokkering. De aanbetaling loopt altijd via het platform; alleen de resterende 80% reken je rechtstreeks af.",
       },
       {
-        q: "Waar is MUA Match beschikbaar?",
-        a: "MUA Match is actief in Nederland en Europa en blijft groeien. Zoek op locatie om artiesten bij jou in de buurt te vinden, of filter op artiesten die op de dag zelf naar je toe komen.",
+        q: "Wat gebeurt er bij misbruik?",
+        a: "Valse of misleidende informatie, spam, kwetsende content en het omzeilen van platformbetalingen zijn niet toegestaan. MUA Match kan een account in zulke gevallen tijdelijk blokkeren of verwijderen, en gebruikers kunnen misbruik melden bij MUA Match.",
       },
     ],
     backToHome: "Terug naar home",
@@ -233,11 +262,6 @@ const dictionary: Dictionary = {
     text: "Deze website gebruikt cookies. Door verder te surfen ga je akkoord.",
     more: "Meer informatie",
     accept: "Akkoord",
-  },
-  legal: {
-    fetchFailed:
-      "Deze pagina kon niet worden geladen. Je vindt het document op muamatch.com.",
-    openOfficial: "Open officiële pagina",
   },
   footer: {
     tagline: "Vind, vergelijk en boek professionele makeup-artiesten.",
