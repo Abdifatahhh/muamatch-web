@@ -18,6 +18,7 @@ const dictionary: Dictionary = {
     label: "Menu",
     open: "Open menu",
     close: "Close menu",
+    forMuas: "For makeup artists",
     downloadApp: "Download the app",
     help: "Help and support",
     darkMode: "Dark mode",
@@ -47,9 +48,9 @@ const dictionary: Dictionary = {
   socialProof: {
     title: "Trusted by beauty professionals across Europe",
     stats: [
-      { value: "500+", label: "Makeup artists" },
+      { value: "200+", label: "Makeup artists" },
       { value: "20+", label: "Countries" },
-      { value: "10,000+", label: "Matches made" },
+      { value: "1,000+", label: "Matches made" },
       { value: "4.9", label: "Average rating" },
     ],
   },
@@ -103,6 +104,13 @@ const dictionary: Dictionary = {
       earningsLabel: "This month",
       requestTitle: "New booking request",
       requestBody: "Bridal trial · Sat 14:00",
+      boostTitle: "Boost your visibility",
+      boostBody: "Get more views and bookings",
+      trendTitle: "Revenue trend",
+      statusTitle: "Booking status",
+      statusCompleted: "Completed",
+      statusAccepted: "Accepted",
+      statusCancelled: "Cancelled",
     },
   },
   featured: {

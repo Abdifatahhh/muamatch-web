@@ -18,6 +18,7 @@ const dictionary: Dictionary = {
     label: "Menu",
     open: "Menu openen",
     close: "Menu sluiten",
+    forMuas: "Voor makeup-artiesten",
     downloadApp: "Download de app",
     help: "Hulp en ondersteuning",
     darkMode: "Donkere modus",
@@ -47,9 +48,9 @@ const dictionary: Dictionary = {
   socialProof: {
     title: "Vertrouwd door beautyprofessionals in heel Europa",
     stats: [
-      { value: "500+", label: "Makeup-artiesten" },
+      { value: "200+", label: "Makeup-artiesten" },
       { value: "20+", label: "Landen" },
-      { value: "10.000+", label: "Matches" },
+      { value: "1.000+", label: "Matches" },
       { value: "4,9", label: "Gemiddelde score" },
     ],
   },
@@ -103,6 +104,13 @@ const dictionary: Dictionary = {
       earningsLabel: "Deze maand",
       requestTitle: "Nieuwe boekingsaanvraag",
       requestBody: "Bruidsproef · za 14:00",
+      boostTitle: "Vergroot je zichtbaarheid",
+      boostBody: "Meer weergaven en boekingen",
+      trendTitle: "Omzettrend",
+      statusTitle: "Boekingsstatus",
+      statusCompleted: "Afgerond",
+      statusAccepted: "Geaccepteerd",
+      statusCancelled: "Geannuleerd",
     },
   },
   featured: {

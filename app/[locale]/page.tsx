@@ -22,6 +22,8 @@ import {
   Wallet,
   Globe,
   Lock,
+  Rocket,
+  ChevronRight,
 } from "lucide-react";
 import { SiteFooter } from "@/components/site-footer";
 import { SiteHeader } from "@/components/site-header";
@@ -69,12 +71,12 @@ const PROFILE_PHOTOS = [
   "/looks/branding.jpg", // Sofia: clean beauty shot
 ];
 
-// Hover shot per artist: an editorial portrait for Lena, a finished look
-// for Diana, an on-set / studio shot for Kelly and Sofia.
+// Hover shot per artist: an editorial portrait for Lena, a bridal shot for
+// Diana, an on-set / studio shot for Kelly and Sofia.
 const PORTFOLIO_SHOTS = [
   "/looks/lena-look.jpg", // dark long-haired editorial shot
   "/looks/kelly-studio.jpg",
-  "/looks/bridal.jpg",
+  "/looks/diana-look.jpg", // lace-dress bride with veil
   "/looks/sofia-shoot.jpg",
 ];
 
@@ -514,17 +516,85 @@ export default async function HomePage({ params }: { params: Promise<{ locale: s
                     </div>
                   </div>
 
-                  <div className="mt-4 flex items-end justify-between gap-1.5 rounded-xl border border-border bg-muted/40 px-3 pb-3 pt-4">
-                    {[45, 70, 52, 84, 62, 92, 74].map((h, i) => (
-                      <span
-                        key={i}
-                        className="bar-rise w-full rounded-t bg-primary/70 last:bg-primary"
-                        style={{ height: `${h}px`, transitionDelay: `${120 + i * 90}ms` }}
-                      />
-                    ))}
+                  {/* Boost row, like the in-app upsell card */}
+                  <div className="dash-tile group relative mt-4 flex items-center gap-3 overflow-hidden rounded-xl border border-border bg-muted/40 py-3 pl-4 pr-3">
+                    <span aria-hidden className="absolute inset-y-0 left-0 w-1 bg-primary" />
+                    <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-lg bg-secondary text-primary">
+                      <Rocket className="h-4 w-4" strokeWidth={2} aria-hidden />
+                    </span>
+                    <div className="min-w-0 flex-1 leading-tight">
+                      <p className="text-xs font-bold text-foreground">{dash.boostTitle}</p>
+                      <p className="text-[11px] text-muted-foreground">{dash.boostBody}</p>
+                    </div>
+                    <ChevronRight
+                      className="h-4 w-4 shrink-0 text-muted-foreground transition-transform group-hover:translate-x-0.5"
+                      strokeWidth={2}
+                      aria-hidden
+                    />
                   </div>
 
-                  <div className="mt-4 flex items-center justify-between rounded-xl bg-primary/10 px-3.5 py-3">
+                  {/* Revenue trend: the line draws itself on reveal */}
+                  <div className="mt-3 rounded-xl border border-border bg-muted/40 p-3">
+                    <div className="flex items-center justify-between">
+                      <p className="text-xs font-bold text-foreground">{dash.trendTitle}</p>
+                      <span className="trend-badge inline-flex items-center gap-1 rounded-full bg-emerald-500/10 px-2 py-0.5 text-[10px] font-semibold text-emerald-600">
+                        <TrendingUp className="h-3 w-3" strokeWidth={2.5} aria-hidden />
+                        +22%
+                      </span>
+                    </div>
+                    <svg viewBox="0 0 280 90" preserveAspectRatio="none" className="mt-2 h-24 w-full" aria-hidden>
+                      <path
+                        className="trend-area"
+                        d="M0,64 C30,50 55,46 85,54 C115,62 132,38 162,44 C192,50 212,26 242,22 C258,20 270,16 280,12 L280,90 L0,90 Z"
+                        fill="var(--primary)"
+                        fillOpacity="0.1"
+                      />
+                      <path
+                        className="trend-line"
+                        d="M0,64 C30,50 55,46 85,54 C115,62 132,38 162,44 C192,50 212,26 242,22 C258,20 270,16 280,12"
+                        fill="none"
+                        stroke="var(--primary)"
+                        strokeWidth="2.5"
+                        strokeLinecap="round"
+                        pathLength={1}
+                      />
+                    </svg>
+                    <div className="mt-1 flex justify-between text-[9px] text-muted-foreground/70">
+                      {["1", "5", "10", "15", "20", "25", "30"].map((n) => (
+                        <span key={n}>{n}</span>
+                      ))}
+                    </div>
+                  </div>
+
+                  {/* Booking status with growing bars */}
+                  <div className="mt-3 rounded-xl border border-border bg-muted/40 p-3">
+                    <p className="text-xs font-bold text-foreground">{dash.statusTitle}</p>
+                    <div className="mt-2.5 space-y-2.5">
+                      {[
+                        { label: dash.statusCompleted, value: "18", pct: 72, dot: "bg-emerald-500", track: "bg-emerald-500/15" },
+                        { label: dash.statusAccepted, value: "6", pct: 24, dot: "bg-blue-500", track: "bg-blue-500/15" },
+                        { label: dash.statusCancelled, value: "2", pct: 8, dot: "bg-red-400", track: "bg-red-400/15" },
+                      ].map((s, i) => (
+                        <div key={s.label}>
+                          <div className="flex items-center justify-between text-[11px]">
+                            <span className="flex items-center gap-1.5 font-medium text-foreground">
+                              <span className={`h-1.5 w-1.5 rounded-full ${s.dot}`} aria-hidden />
+                              {s.label}
+                            </span>
+                            <CountUp value={s.value} className="font-semibold text-foreground" />
+                          </div>
+                          <div className={`mt-1 h-1.5 overflow-hidden rounded-full ${s.track}`}>
+                            <span
+                              className={`status-fill block h-full rounded-full ${s.dot}`}
+                              style={{ width: `${s.pct}%`, transitionDelay: `${300 + i * 140}ms` }}
+                            />
+                          </div>
+                        </div>
+                      ))}
+                    </div>
+                  </div>
+
+                  <div className="mt-3 flex items-center justify-between rounded-xl bg-primary/10 px-3.5 py-3">
                     <span className="flex items-center gap-2 text-xs font-semibold text-foreground">
                       <TrendingUp className="h-4 w-4 text-primary" strokeWidth={2.25} aria-hidden />
                       {dash.earningsLabel}

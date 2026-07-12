@@ -12,6 +12,7 @@ export interface Dictionary {
     label: string;
     open: string;
     close: string;
+    forMuas: string;
     downloadApp: string;
     help: string;
     darkMode: string;
@@ -63,6 +64,13 @@ export interface Dictionary {
       earningsLabel: string;
       requestTitle: string;
       requestBody: string;
+      boostTitle: string;
+      boostBody: string;
+      trendTitle: string;
+      statusTitle: string;
+      statusCompleted: string;
+      statusAccepted: string;
+      statusCancelled: string;
     };
   };
   featured: {

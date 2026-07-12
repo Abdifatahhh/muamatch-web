@@ -8,6 +8,7 @@ import * as React from "react";
 import type { Locale } from "@/lib/i18n";
 import { locales } from "@/lib/i18n";
 import type { Dictionary } from "@/lib/dictionaries/types";
+import { DASHBOARD_URL } from "@/lib/site";
 
 const LOCALE_NAMES: Record<Locale, string> = {
   en: "English",
@@ -173,6 +174,22 @@ export function NavMenu({
             </li>
           </ul>
 
+          {/* Mobile only: the header MUA Login pill is hidden below sm, so
+              artists get their login here. Desktop keeps the header button. */}
+          <div className="mt-3 border-t border-border pt-3 sm:hidden">
+            <p className="px-2 pb-1 text-xs font-semibold uppercase tracking-wide text-muted-foreground">
+              {dict.menu.forMuas}
+            </p>
+            <Link
+              href={DASHBOARD_URL}
+              target="_blank"
+              rel="noopener noreferrer"
+              onClick={() => setOpen(false)}
+              className="block rounded-xl px-2 py-2.5 text-[15px] font-semibold text-primary transition-colors hover:bg-accent"
+            >
+              {dict.nav.login}
+            </Link>
+          </div>
         </nav>
       ) : null}
     </div>

@@ -361,9 +361,22 @@ html.js [data-reveal][data-shown="false"] .dash-chip {
   }
 }
 
-/* Dashboard chart bars grow up once their reveal parent is shown */
-.bar-rise { transform-origin: bottom; transition: transform 0.8s var(--ease-out); }
-html.js [data-reveal][data-shown="false"] .bar-rise { transform: scaleY(0); transition: none; }
+/* Dashboard mock: the revenue line draws itself once revealed, the area and
+   trend badge follow, and the booking-status bars grow from the left. */
+.trend-line {
+  stroke-dasharray: 1;
+  stroke-dashoffset: 0;
+  transition: stroke-dashoffset 1.3s var(--ease-in-out) 0.25s;
+}
+html.js [data-reveal][data-shown="false"] .trend-line { stroke-dashoffset: 1; transition: none; }
+.trend-area { transition: opacity 0.7s var(--ease-out) 1.15s; }
+html.js [data-reveal][data-shown="false"] .trend-area { opacity: 0; transition: none; }
+.trend-badge {
+  transition: opacity 0.4s var(--ease-out) 1.25s, transform 0.4s var(--ease-out) 1.25s;
+}
+html.js [data-reveal][data-shown="false"] .trend-badge { opacity: 0; transform: scale(0.85); transition: none; }
+.status-fill { transform-origin: left; transition: transform 0.9s var(--ease-out); }
+html.js [data-reveal][data-shown="false"] .status-fill { transform: scaleX(0); transition: none; }
 
 /* Scrolling city marquee */
 .marquee {
@@ -437,7 +450,13 @@ html.js [data-reveal][data-shown="false"] .bar-rise { transform: scaleY(0); tran
   .review-card:hover {
     transform: none;
   }
-  .bar-rise { transition: none !important; transform: none !important; }
+  .trend-line,
+  .trend-area,
+  .trend-badge,
+  .status-fill {
+    transition: none !important;
+    transform: none !important;
+  }
   .dash-chip { transition: none !important; }
   details[open] .faq-answer { animation: none; }
 }
