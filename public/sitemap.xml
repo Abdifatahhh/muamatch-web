@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xhtml="http://www.w3.org/1999/xhtml">
+  <url>
+    <loc>https://muamatch.com/en</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://muamatch.com/en"/>
+    <xhtml:link rel="alternate" hreflang="nl" href="https://muamatch.com/nl"/>
+    <lastmod>2026-07-14</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>1.0</priority>
+  </url>
+  <url>
+    <loc>https://muamatch.com/nl</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://muamatch.com/en"/>
+    <xhtml:link rel="alternate" hreflang="nl" href="https://muamatch.com/nl"/>
+    <lastmod>2026-07-14</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>1.0</priority>
+  </url>
+  <url>
+    <loc>https://muamatch.com/en/faq</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://muamatch.com/en/faq"/>
+    <xhtml:link rel="alternate" hreflang="nl" href="https://muamatch.com/nl/faq"/>
+    <lastmod>2026-07-14</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://muamatch.com/nl/faq</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://muamatch.com/en/faq"/>
+    <xhtml:link rel="alternate" hreflang="nl" href="https://muamatch.com/nl/faq"/>
+    <lastmod>2026-07-14</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://muamatch.com/en/contact</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://muamatch.com/en/contact"/>
+    <xhtml:link rel="alternate" hreflang="nl" href="https://muamatch.com/nl/contact"/>
+    <lastmod>2026-07-14</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://muamatch.com/nl/contact</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://muamatch.com/en/contact"/>
+    <xhtml:link rel="alternate" hreflang="nl" href="https://muamatch.com/nl/contact"/>
+    <lastmod>2026-07-14</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://muamatch.com/en/termsconditions</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://muamatch.com/en/termsconditions"/>
+    <xhtml:link rel="alternate" hreflang="nl" href="https://muamatch.com/nl/termsconditions"/>
+    <lastmod>2026-07-14</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://muamatch.com/nl/termsconditions</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://muamatch.com/en/termsconditions"/>
+    <xhtml:link rel="alternate" hreflang="nl" href="https://muamatch.com/nl/termsconditions"/>
+    <lastmod>2026-07-14</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://muamatch.com/en/privacypolicy</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://muamatch.com/en/privacypolicy"/>
+    <xhtml:link rel="alternate" hreflang="nl" href="https://muamatch.com/nl/privacypolicy"/>
+    <lastmod>2026-07-14</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://muamatch.com/nl/privacypolicy</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://muamatch.com/en/privacypolicy"/>
+    <xhtml:link rel="alternate" hreflang="nl" href="https://muamatch.com/nl/privacypolicy"/>
+    <lastmod>2026-07-14</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://muamatch.com/en/cookiemessage</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://muamatch.com/en/cookiemessage"/>
+    <xhtml:link rel="alternate" hreflang="nl" href="https://muamatch.com/nl/cookiemessage"/>
+    <lastmod>2026-07-14</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://muamatch.com/nl/cookiemessage</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://muamatch.com/en/cookiemessage"/>
+    <xhtml:link rel="alternate" hreflang="nl" href="https://muamatch.com/nl/cookiemessage"/>
+    <lastmod>2026-07-14</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+</urlset>
