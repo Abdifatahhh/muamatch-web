@@ -134,11 +134,15 @@ export interface Dictionary {
   };
   cookie: {
     bannerAria: string;
+    title: string;
     text: string;
     more: string;
     acceptAll: string;
     reject: string;
     preferences: string;
+    prefsTitle: string;
+    prefsIntro: string;
+    closeAria: string;
     save: string;
     necessaryLabel: string;
     necessaryDesc: string;

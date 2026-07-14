@@ -361,10 +361,13 @@ export default async function HomePage({ params }: { params: Promise<{ locale: s
               <RevealGroup as="ul" className="reveal-blur mt-12 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
                 {dict.whyUs.items.map((item, i) => {
                   const Icon = WHY_ICONS[i % WHY_ICONS.length];
+                  // Mobile shows only the four key cards (verified, pricing,
+                  // secure, chat) to cut scrolling; desktop keeps all six.
+                  const mobileHidden = i === 3 || i === 5;
                   return (
                     // Outer li carries the scroll reveal; the inner card owns the
                     // hover transitions so the reveal rules cannot override them.
-                    <li key={item.title}>
+                    <li key={item.title} className={mobileHidden ? "hidden sm:block" : undefined}>
                       <SpotlightCard className="feature-card h-full rounded-3xl bg-card p-6 shadow-sm sm:p-8">
                         <span
                           className="feature-icon flex h-12 w-12 items-center justify-center rounded-xl bg-secondary text-primary"
