@@ -284,6 +284,7 @@ export default async function HomePage({ params }: { params: Promise<{ locale: s
                       sizes="(max-width: 1023px) 92vw, 46vw"
                       quality={PHOTO_QUALITY}
                       priority
+                      fetchPriority="high"
                     />
                   </div>
                 </div>

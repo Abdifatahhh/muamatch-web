@@ -495,7 +495,6 @@ export function AppShowcase({
                         className="object-cover object-top"
                         sizes="300px"
                         quality={90}
-                        loading={i === 0 ? "eager" : undefined}
                       />
                     </div>
                   </div>
