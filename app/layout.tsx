@@ -16,7 +16,7 @@ const roboto = Roboto({
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://muamatch.com"),
-  icons: { icon: "https://www.muamatch.com/favicon.ico" },
+  icons: { icon: "/favicon.ico" },
   title: { default: "MUA Match", template: "%s | MUA Match" },
 };
 

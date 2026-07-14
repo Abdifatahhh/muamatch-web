@@ -138,6 +138,9 @@ html.js [data-reveal-group][data-shown="true"] > *:nth-child(8) { transition-del
 }
 .float-soft { animation: heroFloat 10s var(--ease-in-out) infinite; }
 
+/* Cookie card slides in softly from the bottom-left corner */
+.cookie-in { animation: heroChipIn 0.5s var(--ease-out) 0.6s both; }
+
 /* Review cards: lift with a hairline border, like the other card families */
 .review-card {
   border: 1px solid transparent;
@@ -437,6 +440,7 @@ html.js [data-reveal][data-shown="false"] .status-fill { transform: scaleX(0); t
   .hero-radial,
   .hero-float,
   .hero-chip-in,
+  .cookie-in,
   .cta-drift,
   .float-soft {
     animation: none !important;

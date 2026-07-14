@@ -7,7 +7,7 @@ import {
   Star,
   MapPin,
   Sparkles,
-  Download,
+  Heart,
   BadgeCheck,
   ShieldCheck,
   Images,
@@ -40,7 +40,6 @@ import { isLocale } from "@/lib/i18n";
 import {
   APP_STORE,
   PLAY_STORE,
-  DASHBOARD_SIGNUP_URL,
   STORE_ICONS,
   asset,
 } from "@/lib/site";
@@ -109,7 +108,7 @@ const CLIENT_ICONS: ComponentType<{ className?: string; strokeWidth?: number }>[
   CalendarCheck,
   Star,
   MessageSquare,
-  Download,
+  Heart,
 ];
 
 const MUA_ICONS: ComponentType<{ className?: string; strokeWidth?: number }>[] = [
@@ -155,7 +154,7 @@ function StoreButtons({
         rel="noopener noreferrer"
         className="tap inline-flex touch-manipulation rounded-lg hover:-translate-y-1 hover:opacity-90 [filter:drop-shadow(0_1px_3px_rgba(0,0,0,0.16))]"
       >
-        <Image src={STORE_ICONS.appStore} alt={appStoreAlt} width={140} height={42} className="h-[46px] w-auto" />
+        <Image src={STORE_ICONS.appStore} alt={appStoreAlt} width={161} height={46} />
       </Link>
       <Link
         href={PLAY_STORE}
@@ -163,7 +162,7 @@ function StoreButtons({
         rel="noopener noreferrer"
         className="tap inline-flex touch-manipulation rounded-lg hover:-translate-y-1 hover:opacity-90 [filter:drop-shadow(0_1px_3px_rgba(0,0,0,0.16))]"
       >
-        <Image src={STORE_ICONS.playStore} alt={playAlt} width={158} height={42} className="h-[46px] w-auto" />
+        <Image src={STORE_ICONS.playStore} alt={playAlt} width={161} height={46} />
       </Link>
     </div>
   );
@@ -420,7 +419,7 @@ export default async function HomePage({ params }: { params: Promise<{ locale: s
                 </ul>
                 <div className="mt-9 flex flex-wrap items-center gap-x-5 gap-y-3">
                   <Link
-                    href={`${base}#get-app`}
+                    href={`${base}#download-app`}
                     className="tap group inline-flex min-h-[54px] touch-manipulation items-center justify-center gap-2 rounded-full bg-primary px-8 text-base font-semibold text-primary-foreground shadow-sm hover:opacity-90"
                   >
                     {dict.forClients.cta}
@@ -436,9 +435,7 @@ export default async function HomePage({ params }: { params: Promise<{ locale: s
                 photos={PROFILE_PHOTOS}
                 portfolios={dict.featured.artists.map((_, i) => PORTFOLIO_SHOTS[i] ?? null)}
                 alts={dict.featured.artists.map((artist) => dict.featured.photoAlt(artist.name))}
-                viewLabel={dict.featured.viewLabel}
                 verifiedLabel={dict.featured.verifiedLabel}
-                href={`${base}#get-app`}
               />
             </div>
           </div>
@@ -448,7 +445,7 @@ export default async function HomePage({ params }: { params: Promise<{ locale: s
         <section id="for-muas" className="scroll-mt-24 bg-secondary/40 py-16 sm:py-24">
           <div className="mx-auto max-w-6xl px-4 sm:px-6">
             <div className="grid items-center gap-10 lg:grid-cols-2 lg:gap-14">
-              <Reveal className="order-2 lg:order-1">
+              <Reveal className="lg:order-1">
                 <p className="text-xs font-semibold uppercase tracking-[0.2em] text-primary">{dict.forMuas.eyebrow}</p>
                 <h2 className="mt-3 text-3xl font-bold tracking-tight sm:text-4xl">{dict.forMuas.title}</h2>
                 <p className="mt-4 max-w-xl text-lg text-muted-foreground">{dict.forMuas.lead}</p>
@@ -467,10 +464,10 @@ export default async function HomePage({ params }: { params: Promise<{ locale: s
                 </ul>
                 <div className="mt-9">
                   <Link
-                    href={DASHBOARD_SIGNUP_URL}
+                    href={APP_STORE}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="tap group inline-flex min-h-[56px] touch-manipulation items-center justify-center gap-2 rounded-full bg-primary px-9 text-base font-semibold text-primary-foreground shadow-md hover:opacity-90"
+                    className="tap group inline-flex min-h-[54px] touch-manipulation items-center justify-center gap-2 rounded-full bg-primary px-8 text-base font-semibold text-primary-foreground shadow-sm hover:opacity-90"
                   >
                     {dict.forMuas.ctaJoin}
                     <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" strokeWidth={2.25} aria-hidden />
@@ -480,7 +477,7 @@ export default async function HomePage({ params }: { params: Promise<{ locale: s
               </Reveal>
 
               {/* Dashboard mock */}
-              <Reveal className="relative order-1 lg:order-2">
+              <Reveal className="relative lg:order-2">
                 <div aria-hidden className="pointer-events-none absolute -inset-6 -z-10">
                   <div className="absolute inset-0 rounded-[2.5rem] bg-gradient-to-br from-primary/15 to-accent/40 blur-2xl" />
                   <div className="absolute inset-0 opacity-60 [background:radial-gradient(70%_60%_at_50%_40%,var(--secondary),transparent_72%)]" />
@@ -516,8 +513,12 @@ export default async function HomePage({ params }: { params: Promise<{ locale: s
                     </div>
                   </div>
 
-                  {/* Boost row, like the in-app upsell card */}
-                  <div className="dash-tile group relative mt-4 flex items-center gap-3 overflow-hidden rounded-xl border border-border bg-muted/40 py-3 pl-4 pr-3">
+                  {/* Boost row, like the in-app upsell card. It looks tappable,
+                      so it actually goes somewhere: the download section. */}
+                  <Link
+                    href={`${base}#download-app`}
+                    className="dash-tile group relative mt-4 flex items-center gap-3 overflow-hidden rounded-xl border border-border bg-muted/40 py-3 pl-4 pr-3"
+                  >
                     <span aria-hidden className="absolute inset-y-0 left-0 w-1 bg-primary" />
                     <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-lg bg-secondary text-primary">
                       <Rocket className="h-4 w-4" strokeWidth={2} aria-hidden />
@@ -531,7 +532,7 @@ export default async function HomePage({ params }: { params: Promise<{ locale: s
                       strokeWidth={2}
                       aria-hidden
                     />
-                  </div>
+                  </Link>
 
                   {/* Revenue trend: the line draws itself on reveal */}
                   <div className="mt-3 rounded-xl border border-border bg-muted/40 p-3">
@@ -634,22 +635,22 @@ export default async function HomePage({ params }: { params: Promise<{ locale: s
                   className="pointer-events-none absolute -left-20 top-1/2 -z-10 h-72 w-72 -translate-y-1/2 rounded-full bg-secondary/60 blur-3xl"
                 />
 
-                <h2 className="text-balance text-4xl font-bold leading-[1.06] tracking-tight sm:text-[2.75rem] lg:text-[3.25rem]">
+                <h2 className="text-balance text-3xl font-bold tracking-tight sm:text-4xl">
                   {dict.appScreens.title}
                 </h2>
-                <p className="mt-4 max-w-md text-lg leading-relaxed text-muted-foreground sm:text-xl">
+                <p className="mt-4 max-w-md text-lg leading-relaxed text-muted-foreground">
                   {dict.appScreens.subtitle}
                 </p>
 
                 <div className="mt-8 flex flex-wrap items-center gap-x-5 gap-y-3">
                   <Link
-                    href={`${base}#get-app`}
+                    href={`${base}#download-app`}
                     className="tap group inline-flex min-h-[54px] touch-manipulation items-center justify-center gap-2 rounded-full bg-primary px-8 text-base font-semibold text-primary-foreground shadow-sm hover:opacity-90"
                   >
                     {dict.appScreens.cta}
                     <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" strokeWidth={2.25} aria-hidden />
                   </Link>
-                  <span className="text-sm font-medium text-muted-foreground">{dict.hero.freeNote}</span>
+                  <span className="text-sm font-medium text-muted-foreground">{dict.appScreens.note}</span>
                 </div>
               </Reveal>
               <Reveal className="min-w-0">
@@ -738,7 +739,7 @@ export default async function HomePage({ params }: { params: Promise<{ locale: s
                   <p className="max-w-[13rem] text-center text-xs leading-relaxed text-white/55">{dict.getApp.qrHint}</p>
                 </div>
 
-                <div className="float-soft mx-auto w-[170px] sm:w-[190px]">
+                <div className="float-soft mx-auto hidden w-[170px] sm:block sm:w-[190px]">
                   <div className="relative aspect-[736/1600] w-full overflow-hidden rounded-[1.8rem] border-[6px] border-white/15 bg-white/10 shadow-xl">
                     <div className="relative h-full w-full overflow-hidden rounded-[1.35rem] bg-white">
                       <Image

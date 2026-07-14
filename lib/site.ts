@@ -4,10 +4,9 @@ export const APP_STORE = "https://apps.apple.com/nl/app/mua-match/id6566187518";
 export const PLAY_STORE =
   "https://play.google.com/store/apps/details?id=com.muamatch.muamatch";
 
-// TODO: confirm the real MUA dashboard URLs. Used by header "Login", the
-// "For MUAs" CTAs and the footer. Change both values here only.
-export const DASHBOARD_URL = "https://dashboard.muamatch.com";
-export const DASHBOARD_SIGNUP_URL = "https://dashboard.muamatch.com/signup";
+// MUA CMS login, used by the header button, the mobile menu and the footer.
+// Artist sign-up happens in the app, so the "join" CTA points at the store.
+export const DASHBOARD_URL = "https://cms.muamatch.com";
 
 export const INSTAGRAM_URL = "https://www.instagram.com/mua.match/";
 export const TIKTOK_URL = "https://www.tiktok.com/@mua.match";

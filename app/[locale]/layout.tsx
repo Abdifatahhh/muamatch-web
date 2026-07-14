@@ -43,6 +43,14 @@ export default async function LocaleLayout({ children, params }: Props) {
 
   return (
     <>
+      {/* Set the correct lang before paint; the SSG shell is prerendered
+          with the root layout's default. HtmlLangSync keeps it in sync on
+          client-side navigations. */}
+      <script
+        dangerouslySetInnerHTML={{
+          __html: `document.documentElement.lang=${JSON.stringify(locale)}`,
+        }}
+      />
       {children}
       <CookieBanner cookie={dict.cookie} locale={locale} />
     </>

@@ -1,7 +1,6 @@
 "use client";
 
 import Image from "next/image";
-import Link from "next/link";
 import * as React from "react";
 import { BadgeCheck, MapPin, Star } from "lucide-react";
 import { MouseParallax } from "@/components/mouse-parallax";
@@ -22,9 +21,7 @@ export function FeaturedArtists({
   photos,
   portfolios,
   alts,
-  viewLabel,
   verifiedLabel,
-  href,
 }: {
   artists: Artist[];
   photos: string[];
@@ -32,9 +29,7 @@ export function FeaturedArtists({
   // on hover. null hides the effect for artists without a portfolio shot.
   portfolios: (string | null)[];
   alts: string[];
-  viewLabel: string;
   verifiedLabel: string;
-  href: string;
 }) {
   const pool = Math.min(artists.length, photos.length, alts.length);
   const visible = Math.min(SLOTS, pool);
@@ -113,11 +108,8 @@ export function FeaturedArtists({
               // Slot-keyed so the DOM persists and only the content fades.
               <li key={`slot-${i}`}>
                 <div className={i % 2 === 0 ? "mua-float-a" : "mua-float-b"} style={{ animationDelay: `${i * 1100}ms` }}>
-                  <Link
-                    href={href}
-                    aria-label={`${viewLabel}: ${artist.name}`}
-                    className="mua-card group block overflow-hidden rounded-3xl bg-card shadow-sm"
-                  >
+                  {/* Not a link on purpose: profiles live in the app. */}
+                  <div className="mua-card group overflow-hidden rounded-3xl bg-card shadow-sm">
                     <div
                       style={{
                         opacity: mid ? 0 : 1,
@@ -148,13 +140,6 @@ export function FeaturedArtists({
                             quality={90}
                           />
                         )}
-                        <div
-                          aria-hidden
-                          className="absolute inset-0 bg-gradient-to-t from-black/30 via-black/0 to-transparent opacity-0 transition-opacity duration-300 group-hover:opacity-100"
-                        />
-                        <span className="pointer-events-none absolute bottom-3 left-1/2 inline-flex -translate-x-1/2 translate-y-2 items-center rounded-full bg-background/90 px-3.5 py-1.5 text-xs font-semibold text-foreground opacity-0 shadow-sm backdrop-blur-sm transition-[transform,opacity] duration-300 group-hover:translate-y-0 group-hover:opacity-100">
-                          {viewLabel}
-                        </span>
                         <span className="rating-badge absolute right-2 top-2 inline-flex items-center gap-1 rounded-full bg-background/90 px-2 py-1 text-xs font-semibold text-foreground shadow-sm backdrop-blur-sm">
                           <Star className="h-3.5 w-3.5 fill-[#f7c948] text-[#f7c948]" strokeWidth={0} />
                           {artist.rating}
@@ -178,7 +163,7 @@ export function FeaturedArtists({
                         <p className="mt-0.5 text-xs text-accent-foreground">{artist.specialty}</p>
                       </div>
                     </div>
-                  </Link>
+                  </div>
                 </div>
               </li>
             );

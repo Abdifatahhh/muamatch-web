@@ -28,7 +28,9 @@ type Gesture = { kind: "tap" | "swipe"; stage: GestureStage; x: number; y: numbe
 // element in the screenshot), a swipe to the next page, or a soft cut back
 // to the start. drift is the fake scroll amplitude in % of screen height.
 const STEPS: { kind: "tap" | "swipe" | "loop"; x: number; y: number; drift: number }[] = [
-  { kind: "tap", x: 31, y: 92.6, drift: 1.2 }, // Home: Explore tab in the bottom nav
+  // Home: Explore tab in the bottom nav. The home screenshot is padded to
+  // the frame aspect (white bands top/bottom), so y is calibrated for that.
+  { kind: "tap", x: 30, y: 88.9, drift: 1.2 },
   { kind: "swipe", x: 74, y: 52, drift: 1.3 }, // Explore: swipe across the artist grid
   { kind: "tap", x: 41, y: 46.2, drift: 0.5 }, // Glam AI: "available this weekend?" chip
   { kind: "swipe", x: 74, y: 48, drift: 1.2 }, // Bookings: swipe across the list
@@ -491,7 +493,7 @@ export function AppShowcase({
                         className="object-cover object-top"
                         sizes="300px"
                         quality={90}
-                        priority={i === 0}
+                        loading={i === 0 ? "eager" : undefined}
                       />
                     </div>
                   </div>

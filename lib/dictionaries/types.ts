@@ -74,7 +74,6 @@ export interface Dictionary {
     };
   };
   featured: {
-    viewLabel: string;
     verifiedLabel: string;
     artists: { name: string; location: string; specialty: string; rating: string; verified?: boolean }[];
     photoAlt: (name: string) => string;
@@ -83,6 +82,7 @@ export interface Dictionary {
     title: string;
     subtitle: string;
     cta: string;
+    note: string;
     screens: { label: string; caption: string }[];
     float: {
       verified: string;
@@ -132,8 +132,24 @@ export interface Dictionary {
     mailSubjectFallback: string;
     mailBodyNamePrefix: string;
     mailBodyEmailPrefix: string;
+    sentNote: string;
   };
-  cookie: { bannerAria: string; text: string; more: string; accept: string };
+  cookie: {
+    bannerAria: string;
+    text: string;
+    more: string;
+    acceptAll: string;
+    reject: string;
+    preferences: string;
+    save: string;
+    necessaryLabel: string;
+    necessaryDesc: string;
+    analyticsLabel: string;
+    analyticsDesc: string;
+    marketingLabel: string;
+    marketingDesc: string;
+    manageLabel: string;
+  };
   footer: {
     tagline: string;
     quickLinksAria: string;

@@ -2,6 +2,7 @@ import Image from "next/image";
 import Link from "next/link";
 import type { Dictionary } from "@/lib/dictionaries/types";
 import type { Locale } from "@/lib/i18n";
+import { CookiePreferencesLink } from "@/components/cookie-preferences-link";
 import { Logo } from "@/components/logo";
 import { Reveal } from "@/components/reveal";
 import {
@@ -65,6 +66,10 @@ export function SiteFooter({
                 {link.label}
               </Link>
             ))}
+            <CookiePreferencesLink
+              label={dict.cookie.manageLabel}
+              className="flex w-fit items-center text-left text-muted-foreground transition-[color,transform] duration-200 hover:translate-x-1 hover:text-primary max-sm:min-h-[44px]"
+            />
           </nav>
 
           <div className="flex flex-row gap-3 sm:flex-col">
@@ -74,7 +79,7 @@ export function SiteFooter({
               rel="noopener noreferrer"
               className="tap inline-flex w-fit touch-manipulation items-center rounded-lg hover:-translate-y-1 hover:opacity-90 [filter:drop-shadow(0_1px_3px_rgba(0,0,0,0.16))] max-sm:min-h-[44px]"
             >
-              <Image src={STORE_ICONS.appStore} alt={dict.hero.appStoreAlt} width={130} height={39} className="h-[39px] w-auto" />
+              <Image src={STORE_ICONS.appStore} alt={dict.hero.appStoreAlt} width={137} height={39} />
             </Link>
             <Link
               href={PLAY_STORE}
@@ -82,7 +87,7 @@ export function SiteFooter({
               rel="noopener noreferrer"
               className="tap inline-flex w-fit touch-manipulation items-center rounded-lg hover:-translate-y-1 hover:opacity-90 [filter:drop-shadow(0_1px_3px_rgba(0,0,0,0.16))] max-sm:min-h-[44px]"
             >
-              <Image src={STORE_ICONS.playStore} alt={dict.hero.playAlt} width={146} height={39} className="h-[39px] w-auto" />
+              <Image src={STORE_ICONS.playStore} alt={dict.hero.playAlt} width={137} height={39} />
             </Link>
           </div>
         </div>

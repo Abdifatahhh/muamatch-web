@@ -5,8 +5,11 @@ import { CONTACT_EMAIL } from "@/lib/site";
 import * as React from "react";
 
 export function ContactForm({ labels }: { labels: Dictionary["contactForm"] }) {
+  const [sent, setSent] = React.useState(false);
+
   function onSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
+    setSent(true);
     const fd = new FormData(e.currentTarget);
     const name = String(fd.get("name") ?? "").trim();
     const email = String(fd.get("email") ?? "").trim();
@@ -27,6 +30,7 @@ export function ContactForm({ labels }: { labels: Dictionary["contactForm"] }) {
         <input
           name="name"
           autoComplete="name"
+          required
           placeholder={labels.placeholderName}
           className="rounded-lg border border-input bg-background px-3 py-2.5 text-base text-foreground outline-none ring-ring transition-shadow focus-visible:ring-2"
         />
@@ -38,6 +42,7 @@ export function ContactForm({ labels }: { labels: Dictionary["contactForm"] }) {
           type="email"
           autoComplete="email"
           inputMode="email"
+          required
           placeholder={labels.placeholderEmail}
           className="rounded-lg border border-input bg-background px-3 py-2.5 text-base text-foreground outline-none ring-ring transition-shadow focus-visible:ring-2"
         />
@@ -47,6 +52,7 @@ export function ContactForm({ labels }: { labels: Dictionary["contactForm"] }) {
         <textarea
           name="body"
           rows={5}
+          required
           placeholder={labels.placeholderBody}
           className="resize-y rounded-lg border border-input bg-background px-3 py-2.5 text-base text-foreground outline-none ring-ring transition-shadow focus-visible:ring-2"
         />
@@ -57,6 +63,14 @@ export function ContactForm({ labels }: { labels: Dictionary["contactForm"] }) {
       >
         {labels.submit}
       </button>
+      {sent ? (
+        <p aria-live="polite" className="text-sm leading-relaxed text-muted-foreground">
+          {labels.sentNote}{" "}
+          <a href={`mailto:${CONTACT_EMAIL}`} className="font-medium text-primary hover:underline">
+            {CONTACT_EMAIL}
+          </a>
+        </p>
+      ) : null}
     </form>
   );
 }

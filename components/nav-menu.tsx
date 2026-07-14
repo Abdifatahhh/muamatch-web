@@ -89,7 +89,7 @@ export function NavMenu({
         >
           <ul className="mt-1 space-y-0.5">
             <li>
-              <Link href={`${base}#get-app`} onClick={() => setOpen(false)} className={itemClass}>
+              <Link href={`${base}#download-app`} onClick={() => setOpen(false)} className={itemClass}>
                 {dict.menu.downloadApp}
               </Link>
             </li>
