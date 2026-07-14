@@ -44,7 +44,9 @@ import {
   asset,
 } from "@/lib/site";
 
-const PHOTO_QUALITY = 96;
+// 75 keeps photos visually clean at half the bytes of the old 96; the hero
+// is the LCP element, so its weight sets the mobile PageSpeed score.
+const PHOTO_QUALITY = 75;
 
 // Hero photo, served locally from /public. Landscape 3:2 lifestyle shot
 // (artist + client + app mockup); the frame crops the empty left edge.

@@ -125,7 +125,7 @@ export function FeaturedArtists({
                           fill
                           className="object-cover transition-transform duration-500 ease-out group-hover:scale-[1.06]"
                           sizes="(max-width: 1023px) 45vw, 22vw"
-                          quality={96}
+                          quality={75}
                         />
                         {portfolios[a] && (
                           // Portfolio look sits at the primary's hover zoom so
@@ -137,7 +137,7 @@ export function FeaturedArtists({
                             fill
                             className="scale-[1.06] object-cover opacity-0 transition-opacity duration-500 ease-out group-hover:opacity-100"
                             sizes="(max-width: 1023px) 45vw, 22vw"
-                            quality={90}
+                            quality={75}
                           />
                         )}
                         <span className="rating-badge absolute right-2 top-2 inline-flex items-center gap-1 rounded-full bg-background/90 px-2 py-1 text-xs font-semibold text-foreground shadow-sm backdrop-blur-sm">

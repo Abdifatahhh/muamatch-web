@@ -3,3 +3,24 @@
 
 [[plugins]]
   package = "@netlify/plugin-nextjs"
+
+# Long cache for static images; new photos always get a new filename.
+[[headers]]
+  for = "/looks/*"
+  [headers.values]
+    Cache-Control = "public, max-age=2678400"
+
+[[headers]]
+  for = "/screens/*"
+  [headers.values]
+    Cache-Control = "public, max-age=2678400"
+
+[[headers]]
+  for = "/hero.jpg"
+  [headers.values]
+    Cache-Control = "public, max-age=2678400"
+
+[[headers]]
+  for = "/*.svg"
+  [headers.values]
+    Cache-Control = "public, max-age=2678400"
