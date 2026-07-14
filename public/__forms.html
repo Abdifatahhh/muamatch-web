@@ -1,0 +1,14 @@
+<!doctype html>
+<html>
+  <head><meta name="robots" content="noindex" /></head>
+  <body>
+    <!-- Static form definition so Netlify detects the form at deploy time.
+         The real form lives in components/contact-form.tsx and posts here. -->
+    <form name="contact" netlify netlify-honeypot="bot-field">
+      <input type="text" name="name" />
+      <input type="email" name="email" />
+      <textarea name="body"></textarea>
+      <input name="bot-field" />
+    </form>
+  </body>
+</html>

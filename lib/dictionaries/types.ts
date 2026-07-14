@@ -128,11 +128,9 @@ export interface Dictionary {
     placeholderEmail: string;
     placeholderBody: string;
     submit: string;
-    mailSubjectPrefix: string;
-    mailSubjectFallback: string;
-    mailBodyNamePrefix: string;
-    mailBodyEmailPrefix: string;
-    sentNote: string;
+    sending: string;
+    successNote: string;
+    errorNote: string;
   };
   cookie: {
     bannerAria: string;
