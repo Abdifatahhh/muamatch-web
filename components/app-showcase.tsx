@@ -38,7 +38,9 @@ const STEPS: { kind: "tap" | "swipe" | "loop"; x: number; y: number; drift: numb
 ];
 
 // Zoom that gives the fake scroll room to move without exposing the edges.
-const SCALE = 1.05;
+// Kept small so the screenshots lose almost nothing at the sides: 1.03 crops
+// 1.5% per edge, and the largest drift (1.3%) still fits inside it.
+const SCALE = 1.03;
 
 // iOS-like navigation curve plus stronger variants of the default easings.
 const EASE_NAV = "cubic-bezier(0.32, 0.72, 0, 1)";
