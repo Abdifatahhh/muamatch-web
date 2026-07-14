@@ -267,6 +267,7 @@ const dictionary: Dictionary = {
     title: "Your privacy",
     text: "We use cookies to run this site. With your consent we also use analytics and marketing cookies.",
     more: "Learn more",
+    moreSr: "about the cookies we use",
     acceptAll: "Accept all",
     reject: "Essential only",
     preferences: "Preferences",

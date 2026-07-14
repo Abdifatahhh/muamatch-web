@@ -84,6 +84,8 @@ export function CookieBanner({
       className="font-medium text-primary underline-offset-4 hover:underline"
     >
       {cookie.more}
+      {/* Screen-reader suffix so the link text is descriptive on its own. */}
+      <span className="sr-only"> {cookie.moreSr}</span>
     </Link>
   );
 

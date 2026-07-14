@@ -267,6 +267,7 @@ const dictionary: Dictionary = {
     title: "Je privacy",
     text: "We gebruiken cookies om deze site te laten werken. Met jouw toestemming gebruiken we ook analytische en marketingcookies.",
     more: "Meer informatie",
+    moreSr: "over de cookies die we gebruiken",
     acceptAll: "Alles accepteren",
     reject: "Alleen noodzakelijke",
     preferences: "Voorkeuren",

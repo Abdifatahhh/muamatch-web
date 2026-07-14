@@ -137,6 +137,7 @@ export interface Dictionary {
     title: string;
     text: string;
     more: string;
+    moreSr: string;
     acceptAll: string;
     reject: string;
     preferences: string;
